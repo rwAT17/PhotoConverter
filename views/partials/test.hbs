@@ -1,0 +1,30 @@
+<div class='files-box'>
+	<div class='columns-names'>
+		<div class='columns-names'><p>Name:</p></div>
+		<div class='columns-names'><p>Last edited on:</p></div>
+		<div class='columns-names'><p>Size:</p></div>
+	</div>
+
+
+	<div class="columns-data">
+           <div class="file-row">
+                  {{#each fileList}} 
+                    <div class="columns-data__name">    
+					 {{#if isDirectory}}
+                      <img class="column-img"  src="/icons/16673999841535958152.svg" alt="">
+                    {{/if}}
+					 {{#if isFile}}
+                      <img class="column-img" src="/icons/5752709981538117042.svg" alt="">
+                    {{/if}}
+                     <a href="/{{this.name}}"> <div>{{this.name}}</div></a>
+					</div>
+                     <div class="columns-data__edit">{{this.time}}</div>
+			         <div class="columns-data__size">{{this.size}}</div>
+			        {{/each}}
+           </div>
+
+
+</div>
+
+
+
