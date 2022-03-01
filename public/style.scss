@@ -14,7 +14,7 @@ body {
 	overflow-x: hidden;
 	font-size: 1.6rem;
 	font-family: 'Raleway', sans-serif;
-	background-color: #f9f9f9;
+	background-color: #E5E3C9;
 }
 
 .wrapper {
@@ -32,7 +32,7 @@ body {
 .front {
 	width: 100vw;
 	height: 100vh;
-	background-color: #707070;
+	background-color: #524A4E;
 }
 
 .files-box {
@@ -46,6 +46,8 @@ body {
 	min-width: 100%;
 	overflow: scroll;
 	overflow-x: hidden;
+	background: rgb(171, 171, 171);
+	background: linear-gradient(0deg, rgba(171, 171, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .columns-names {
@@ -93,4 +95,8 @@ body {
 	position: absolute;
 	transform: translate(-100%);
 	width: 256px;
+}
+
+.dir-bgc {
+	background-color: #fff;
 }
