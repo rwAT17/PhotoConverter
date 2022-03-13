@@ -8,6 +8,7 @@ const port = 3000 // express port
 const { engine } = require('express-handlebars')
 
 app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, 'views'))
 app.engine(
 	'hbs',
 	engine({
@@ -18,55 +19,19 @@ app.engine(
 	})
 )
 app.use(bodyParser.json())
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 
-// error handler middleware
+const readerRouter = require('./routes/readerRouter')
+const mainPageRouter = require('./routes/mainPageRouter')
 
-////////
-const reader = async dir => {
-	// reading a directory then returning an array of objects with names and last edit time
-	// of files of each file in declared directory
-	return fsp.readdir(dir).then(files => {
-		let returnedArr = files.map(async file => {
-			let stat = await fsp.stat(`${dir}/${file}`)
+app.use('/main', mainPageRouter)
+app.use('/reader', readerRouter)
 
-			return {
-				name: file,
-				time: stat.mtime.toDateString(),
-				size: stat.size,
-				isFile: stat.isFile(),
-				isDirectory: stat.isDirectory(),
-			}
-		})
-		return Promise.all(returnedArr)
-	})
-}
-const main = async dir => {
-	let list = await reader(dir)
-	// console.log(list)
-	return list
-}
-
-// express app ///
-app.get('/', async (req, res, next) => {
-	const url = req.originalUrl
-	let originUrl = `${url}`
-	let queryParam = req.query.page
-	let files
-
-	try {
-		files = await main(`${queryParam}`)
-		res.render('main', { url: originUrl, fileList: files, layout: 'index' })
-	} catch (err) {
-		next(err)
-		console.log(typeof next);
-	}
-})
-//
-app.use((err, req, res, next) => {
-	console.log('error1')
-	res.send(err)
-	res.render('error')
+app.use('/', function (err, req, res, next) {
+	console.log(req.originalUrl)
+	// console.log('error1')
+	// res.sendStatus(err)
+	res.render('error', { layout: 'index' })
 })
 
 //Makes the app listen to port 3000
