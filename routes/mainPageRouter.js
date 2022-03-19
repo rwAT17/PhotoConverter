@@ -46,7 +46,7 @@ router.get('/', async (req, res, next) => {
 	let directories
 
 	directories = await main(`../`)
-	res.render('main', {url: originUrl, directoryList: directories, layout: 'mainLayout' })
+	res.render('main', { url: originUrl, directoryList: directories, layout: 'mainLayout' })
 
 	// res.render('main', { isDirectory:
 	// 	layout: 'mainLayout',

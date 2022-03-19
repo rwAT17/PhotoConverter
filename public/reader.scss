@@ -14,7 +14,13 @@ body {
 	overflow-x: hidden;
 	font-size: 1.6rem;
 	font-family: 'Raleway', sans-serif;
-	background-color: #E5E3C9;
+	background-color: #e5e3c9;
+}
+
+a{
+	z-index: 1000;
+	font-size: 20px;
+	color: #5F6CAF;
 }
 
 .wrapper {
@@ -32,7 +38,19 @@ body {
 .front {
 	width: 100vw;
 	height: 100vh;
-	background-color: #C65D7B;
+	background-color: #ffb677;
+}
+
+.current-location{
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-row: 2/3;
+	grid-column: 3/-3;
+	color:#5F6CAF ;
+	font-size: 3rem;
 }
 
 .files-box {
@@ -41,13 +59,12 @@ body {
 	border: 3px solid black;
 	border-radius: 5px;
 	grid-column: 3/-3;
-	grid-row: 2/-6;
+	grid-row: 3/-5;
 	margin: 0 auto;
 	min-width: 100%;
 	overflow: scroll;
 	overflow-x: hidden;
-	background: rgb(171, 171, 171);
-	background: linear-gradient(0deg, rgba(171, 171, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
+	background-color: #edf7fa;
 }
 
 .columns-names {

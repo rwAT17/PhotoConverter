@@ -1,3 +1,11 @@
+
+<div class="current-location">
+	 <p> You are now in</p>
+	 {{#each test}}
+	<a href="http://localhost:3000/reader?page={{this.url}}">{{#each ../fileList}} {{this.name}} {{/each}}</a>
+	 {{/each}}
+</div>
+
 <div class='files-box'>
 	<div class='columns-names'>
 		<div class='columns-names'><p>Name:</p></div>
@@ -22,9 +30,4 @@
 			         <div class="columns-data__size">{{this.size}}</div>
 			        {{/each}}
            </div>
-
-
 </div>
-
-
-

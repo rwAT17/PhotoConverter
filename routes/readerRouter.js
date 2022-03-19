@@ -14,8 +14,11 @@ const reader = async dir => {
 	return fsp.readdir(dir).then(files => {
 		let returnedArr = files.map(async file => {
 			let stat = await fsp.stat(`${dir}/${file}`)
+			// console.log(file);
+			// console.log(path.dirname);
 
 			return {
+				// test: dupa,
 				name: file,
 				time: stat.mtime.toDateString(),
 				size: stat.size,
@@ -38,13 +41,31 @@ router.get('/', async (req, res, next) => {
 	let queryParam = req.query.page
 	let files
 
+	const str = queryParam.split('/')
+	let newArr = []
+	let newObj = {}
+	let objArr = []
+
+	for (let i = 0; i < str.length; i++) {
+		// console.log(str[i])
+		newArr.push(str[i])
+		let newString = newArr.join('/')
+		newObj = { url: newString }
+		objArr.push(newObj)
+	}
+	console.log(objArr)
+
 	try {
 		files = await main(`${queryParam}`)
-		res.render('reader', { url: originUrl, fileList: files, layout: 'index' })
+		res.render('reader', { test: objArr, dirName: queryParam, url: originUrl, fileList: files, layout: 'index' })
+		// console.log(files)
+
+		// console.log(test);
 	} catch (err) {
 		next(err)
-		// console.log(typeof next)
 	}
+
+	// console.log(req.query.page)
 })
 
 module.exports = router

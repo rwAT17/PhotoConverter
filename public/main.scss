@@ -14,7 +14,11 @@ body {
 	overflow-x: hidden;
 	font-size: 1.6rem;
 	font-family: 'Raleway', sans-serif;
-	background-color: #e5e3c9;
+	background-color: #ffb677;
+}
+
+a {
+	color: #5f6caf;
 }
 
 .wrapper {
@@ -28,6 +32,7 @@ body {
 	height: 100vh;
 	width: 100%;
 	max-width: 1200px;
+	background-color: #ffb677;
 }
 
 .front {
@@ -39,15 +44,15 @@ body {
 .search {
 	display: flex;
 	flex-direction: column;
-	align-items:center;
-	justify-content: center;
+	align-items: center;
+	// justify-content: center;
 	grid-column: 3/11;
-	grid-row: 3/5;
+	grid-row: 3/11;
 }
 
 .search-bar {
 	display: inline-block;
-	min-height: 50%;
+	min-height: 5%;
 	width: 100%;
 	background-color: #f6e7d8;
 	border: 3px solid black;
