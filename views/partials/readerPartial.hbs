@@ -1,10 +1,11 @@
 
 <div class="current-location">
 	 <p> You are now in</p>
-	 {{#each test}}
-	<a href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}
-</a>
-	 {{/each}}
+	 <div class="current-location__path"> {{#each location}}
+	<a class="current-location__link" href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}</a>
+	<p>/</p>
+	 {{/each}}</div>
+	
 </div>
 
 <div class='files-box'>
@@ -25,7 +26,7 @@
 					 {{#if isFile}}
                       <img id="imgMini" class="column-img" src="/icons/5752709981538117042.svg" alt="">
                     {{/if}}
-                     <a href='{{../url}}/{{this.name}}'> <div>{{this.name}}</div></a>
+                     <a class="columns-data__link" href='{{../url}}/{{this.name}}'> <div>{{this.name}}</div></a>
 					</div>
                      <div class="columns-data__edit">{{this.time}}</div>
 			         <div class="columns-data__size">{{this.size}}</div>

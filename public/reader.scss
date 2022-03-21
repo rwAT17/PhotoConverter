@@ -17,10 +17,10 @@ body {
 	background-color: #e5e3c9;
 }
 
-a{
+a {
 	z-index: 1000;
 	font-size: 20px;
-	color: #5F6CAF;
+	color: #5f6caf;
 }
 
 .wrapper {
@@ -41,18 +41,31 @@ a{
 	background-color: #ffb677;
 }
 
-.current-location{
-	
+.current-location {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	grid-row: 2/3;
 	grid-column: 3/-3;
-	color:#5F6CAF ;
-	font-size: 3rem;
+	color: #5f6caf;
+	font-size: 4rem;
 }
 
+.current-location__path {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem;
+}
+
+.current-location__link {
+	outline: none;
+	text-decoration: none;
+	font-size: 2.4rem;
+	margin: 1rem;
+}
 .files-box {
 	display: grid;
 	grid-template-rows: 10% 90%;
@@ -78,6 +91,11 @@ a{
 	display: flex;
 	height: 50px;
 	border-top: 1px solid grey;
+}
+
+.columns-data__link {
+	outline: none;
+	text-decoration: none;
 }
 .columns-data__edit {
 	align-items: center;
