@@ -45,19 +45,37 @@ router.get('/', async (req, res, next) => {
 	let newArr = []
 	let newObj = {}
 	let objArr = []
+	let nameArr = []
 
 	for (let i = 0; i < str.length; i++) {
-		// console.log(str[i])
 		newArr.push(str[i])
 		let newString = newArr.join('/')
-		newObj = { url: newString }
+		nameArr.splice(0, 1)
+		nameArr.push(str[i])
+		newObj = { url: newString, name: nameArr.toString() }
 		objArr.push(newObj)
+		// console.log(newString);
+		// console.log(newObj);
+		// console.log(objArr);
+
+
+		// nameObj = { name: nameArr.toString() }
+		// console.log(nameArr)
+		// objArr.push(nameObj)
 	}
+	// console.log(nameObjArr)
 	console.log(objArr)
 
 	try {
 		files = await main(`${queryParam}`)
-		res.render('reader', { test: objArr, dirName: queryParam, url: originUrl, fileList: files, layout: 'index' })
+		res.render('reader', {
+			
+			test: objArr,
+			dirName: queryParam,
+			url: originUrl,
+			fileList: files,
+			layout: 'index',
+		})
 		// console.log(files)
 
 		// console.log(test);

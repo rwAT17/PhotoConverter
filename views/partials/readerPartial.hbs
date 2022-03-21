@@ -2,7 +2,8 @@
 <div class="current-location">
 	 <p> You are now in</p>
 	 {{#each test}}
-	<a href="http://localhost:3000/reader?page={{this.url}}">{{#each ../fileList}} {{this.name}} {{/each}}</a>
+	<a href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}
+</a>
 	 {{/each}}
 </div>
 
