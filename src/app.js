@@ -1,3 +1,5 @@
+// To start type - npm run dev
+
 const fsp = require('fs/promises')
 const express = require('express')
 const querystring = require('querystring')
@@ -25,6 +27,8 @@ app.use('/assets', express.static(path.join(__dirname, '../public')))
 
 const readerRouter = require('../routes/readerRouter')
 const mainPageRouter = require('../routes/mainPageRouter')
+const mainPageRouter = require('../routes/profilesRouter')
+const mainPageRouter = require('../routes/addProfilesRouter')
 
 app.use('/main', mainPageRouter)
 app.use('/reader', readerRouter)

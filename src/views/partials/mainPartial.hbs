@@ -18,7 +18,7 @@
 			<div class='search-bar'>
                    {{#each directoryList}} 
 					 {{#if isDirectory}}
-                       <a href='http://localhost:3000/reader?page=../{{this.name}}'> <div class="dir-link__element" >{{this.name}}</div></a>
+                       <a class="dir-link" href='http://localhost:3000/reader?page=../{{this.name}}'> <div class="dir-link__element" >{{this.name}}</div></a>
                     {{/if}}
 			        {{/each}}
            

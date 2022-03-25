@@ -23,6 +23,7 @@ a {
 
 .wrapper {
   justify-content: center;
+  align-items: start;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -101,6 +102,7 @@ a {
   text-decoration: none;
 }
 .dir-link__element {
+  text-decoration: none;
   margin: 1rem;
 }
 
