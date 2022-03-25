@@ -33,7 +33,7 @@ app.use('/', function (err, req, res, next) {
 	console.log(req.originalUrl)
 	// console.log('error1')
 	// res.sendStatus(err)
-	res.render('error', { layout: 'index' })
+	res.render('error', { layout: 'error' })
 })
 
 //Makes the app listen to port 3000

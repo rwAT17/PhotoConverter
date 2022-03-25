@@ -1,5 +1,15 @@
+  <nav class="navigation">
+			<div class="nav-bar">
+		  <div class="nav-wrapper">
+             <a class="nav-bar__link material-bubble" href="http://localhost:3000/main">Home</a>
+	         <a class="nav-bar__link material-bubble" href="">Profiles</a>
+	         <a class="nav-bar__link material-bubble" href="">Add Profile</a>
+	         <a class="nav-bar__link material-bubble" href="">Docs</a>
+          </div>
+		</div>
+       </nav> 
 
-<div class="current-location">
+<div class="wrapper"><div class="current-location">
 	 <p> You are now in</p>
 	 <div class="current-location__path"> {{#each location}}
 	<a class="current-location__link" href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}</a>
@@ -32,4 +42,6 @@
 			         <div class="columns-data__size">{{this.size}}</div>
 			        {{/each}}
            </div>
+</div>
+</div>
 </div>

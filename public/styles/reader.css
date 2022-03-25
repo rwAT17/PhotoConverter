@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
   font-size: 1.6rem;
   font-family: "Raleway", sans-serif;
-  background-color: #e5e3c9;
+  background-color: #eabf9f;
 }
 
 a {
@@ -24,6 +24,7 @@ a {
 }
 
 .wrapper {
+  justify-content: center;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -33,12 +34,49 @@ a {
   height: 100vh;
   width: 100%;
   max-width: 1200px;
+  background-color: #eabf9f;
 }
 
 .front {
   width: 100vw;
   height: 100vh;
   background-color: #eabf9f;
+}
+
+.navigation {
+  top: 0;
+  position: sticky;
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  background-color: #ff8364;
+  z-index: 1000;
+  width: 100%;
+}
+
+.nav-wrapper {
+  max-width: 1200px;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
+  background-color: #1e212d;
+  border: none;
+}
+
+.nav-bar__link {
+  padding: 1rem;
+  color: #ff8364;
+  text-decoration: none;
+}
+.nav-bar__link:hover {
+  transition: all 0.5s ease;
+  color: #001f3f;
+  background-color: #fff;
+  border: none;
 }
 
 .current-location {
@@ -48,7 +86,7 @@ a {
   align-items: center;
   grid-row: 2/3;
   grid-column: 3/-3;
-  color: #5f6caf;
+  color: #1e212d;
   font-size: 4rem;
 }
 
@@ -65,6 +103,7 @@ a {
   text-decoration: none;
   font-size: 2.4rem;
   margin: 1rem;
+  color: #1e212d;
 }
 
 .files-box {

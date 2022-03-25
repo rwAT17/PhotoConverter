@@ -65,7 +65,7 @@ router.get('/', async (req, res, next) => {
 			dirName: queryParam,
 			url: originUrl,
 			fileList: files,
-			layout: 'index',
+			layout: 'readerLayout',
 		})
 		// console.log(files)
 

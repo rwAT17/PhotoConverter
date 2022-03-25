@@ -1,0 +1,28 @@
+
+	  <nav class="navigation">
+			<div class="nav-bar">
+		  <div class="nav-wrapper">
+             <a class="nav-bar__link material-bubble" href="http://localhost:3000/main">Home</a>
+	         <a class="nav-bar__link material-bubble" href="">Profiles</a>
+	         <a class="nav-bar__link material-bubble" href="">Add Profile</a>
+	         <a class="nav-bar__link material-bubble" href="">Docs</a>
+          </div>
+		</div>
+       </nav> 
+
+	<div class='wrapper'>
+		<div class='search'>
+			<div>
+				<h1>Read a directory</h1>
+			</div>
+			<div class='search-bar'>
+                   {{#each directoryList}} 
+					 {{#if isDirectory}}
+                       <a href='http://localhost:3000/reader?page=../{{this.name}}'> <div class="dir-link__element" >{{this.name}}</div></a>
+                    {{/if}}
+			        {{/each}}
+           
+		</div>
+
+	</div>
+</div>
