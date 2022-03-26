@@ -8,7 +8,8 @@ const port = 3000 // express port
 
 const router = express.Router()
 
-
-
+router.get('/', async (req, res, next) => {
+	res.send('profiles')
+})
 
 module.exports = router

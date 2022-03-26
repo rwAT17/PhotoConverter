@@ -27,11 +27,13 @@ app.use('/assets', express.static(path.join(__dirname, '../public')))
 
 const readerRouter = require('../routes/readerRouter')
 const mainPageRouter = require('../routes/mainPageRouter')
-const mainPageRouter = require('../routes/profilesRouter')
-const mainPageRouter = require('../routes/addProfilesRouter')
+const profilesRouter = require('../routes/profilesRouter')
+const addProfilesRouter = require('../routes/addProfileRouter')
 
 app.use('/main', mainPageRouter)
 app.use('/reader', readerRouter)
+app.use('/profiles', profilesRouter)
+app.use('/addProfile', addProfilesRouter)
 
 app.use('/', function (err, req, res, next) {
 	console.log(req.originalUrl)
