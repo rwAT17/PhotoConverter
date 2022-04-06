@@ -5,8 +5,9 @@ const express = require('express')
 const querystring = require('querystring')
 const bodyParser = require('body-parser')
 const path = require('path')
+const gm = require('gm');
 const app = express()
-const port = 3000 // express port
+const port = 3000
 const { engine } = require('express-handlebars')
 
 app.set('view engine', 'hbs')
@@ -37,12 +38,8 @@ app.use('/addProfile', addProfilesRouter)
 
 app.use('/', function (err, req, res, next) {
 	console.log(req.originalUrl)
-	// console.log('error1')
-	// res.sendStatus(err)
+	
 	res.render('error', { layout: 'error' })
 })
 
-//Makes the app listen to port 3000
 app.listen(port, () => console.log(`App listening to port ${port}`))
-
-///// Scripts
