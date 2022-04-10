@@ -10,6 +10,8 @@ const app = express()
 const port = 3000
 const { engine } = require('express-handlebars')
 
+const ROOT_DIR = process.env.ROOT_DIR || process.env.HOME + '/Pictures';
+
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))
 app.engine(
@@ -25,13 +27,15 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 app.use('/assets', express.static(path.join(__dirname, '../public')))
-
-const readerRouter = require('../routes/readerRouter')
-const mainPageRouter = require('../routes/mainPageRouter')
+const config = {
+    ROOT_DIR: ROOT_DIR
+}
+const readerRouter = require('../routes/readerRouter')(config)
+const mainPageRouter = require('../routes/mainPageRouter')(config)
 const profilesRouter = require('../routes/profilesRouter')
 const addProfilesRouter = require('../routes/addProfileRouter')
 
-app.use('/main', mainPageRouter)
+app.use('/', mainPageRouter)
 app.use('/reader', readerRouter)
 app.use('/profiles', profilesRouter)
 app.use('/addProfile', addProfilesRouter)
