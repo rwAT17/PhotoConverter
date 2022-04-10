@@ -3,13 +3,15 @@ const gm = require('gm')
 const express = require('express')
 
 const router = express.Router()
+let config = undefined;
 
 const reader = async dir => {
 	// reading a directory then returning an array of objects with names and last edit time
 	// of files of each file in declared directory
-	return fsp.readdir(dir).then(files => {
+	return fsp.readdir(`${config.ROOT_DIR}/${dir}`).then(files => {
 		let returnedArr = files.map(async file => {
-			let stat = await fsp.stat(`${dir}/${file}`)
+			console.log(`file: ${config.ROOT_DIR}/${dir}/${file}`)
+			let stat = await fsp.stat(`${config.ROOT_DIR}/${dir}/${file}`)
 
 			return {
 				name: file,
@@ -24,8 +26,7 @@ const reader = async dir => {
 }
 
 const main = async dir => {
-	let list = await reader(dir)
-	return list
+	return reader(dir)
 }
 
 /////////////
@@ -69,4 +70,8 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-module.exports = router
+module.exports = (_config) => {
+	config = _config;
+	return router;
+}
+
