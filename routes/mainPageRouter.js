@@ -10,6 +10,7 @@ const readerRouter = require('./readerRouter')
 app.use('/reader', readerRouter)
 
 const reader = async dir => {
+	console.log(dir);
 	// reading a directory then returning an array of objects with names and last edit time
 	// of files of each file in declared directory
 	return fsp.readdir(dir).then(files => {

@@ -23,8 +23,6 @@ const reader = async dir => {
 	})
 }
 
-///
-
 const main = async dir => {
 	let list = await reader(dir)
 	return list
@@ -52,17 +50,12 @@ router.get('/', async (req, res, next) => {
 		let urlString = newArr.join('/') // ../Pics/Dev pics
 		localizatonName.splice(0, 1)
 		localizatonName.push(str[i])
-
 		newObj = { url: urlString, name: localizatonName.toString() }
 		objArr.push(newObj)
 	}
-	////
-	
-
-	////
-
 	try {
 		files = await main(`${queryParam}`) // reader function
+
 		res.render('reader', {
 			location: objArr,
 			dirName: queryParam,

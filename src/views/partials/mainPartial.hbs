@@ -1,28 +1,27 @@
-
-	  <nav class="navigation">
-			<div class="nav-bar">
-		  <div class="nav-wrapper">
-             <a class="nav-bar__link material-bubble" href="http://localhost:3000/main">Home</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/profiles">Profiles</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/addProfile">Add Profile</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/">Docs</a>
-          </div>
+<nav class='navigation'>
+	<div class='nav-bar'>
+		<div class='nav-wrapper'>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/main'>Home</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/profiles'>Profiles</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/addProfile'>Add Profile</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/'>Docs</a>
 		</div>
-       </nav> 
+	</div>
+</nav>
 
-	<div class='wrapper'>
-		<div class='search'>
-			<div>
-				<h1>Read a directory</h1>
-			</div>
-			<div class='search-bar'>
-                   {{#each directoryList}} 
-					 {{#if isDirectory}}
-                       <a class="dir-link" href='http://localhost:3000/reader?page=../{{this.name}}'> <div class="dir-link__element" >{{this.name}}</div></a>
-                    {{/if}}
-			        {{/each}}
-           
+<div class='wrapper'>
+	<div class='search'>
+		<div>
+			<h1>Read a directory</h1>
 		</div>
-
+		<div class='search-bar'>
+			<form method='POST' action='/processImages'>
+				{{#each directoryList}}
+					<input type='checkbox' id='{{this.name}}' name='{{this.name}}' />
+					<p>{{this.name}}</p>
+				{{/each}}
+				<input type='submit' value='run' />
+			</form>
+		</div>
 	</div>
 </div>

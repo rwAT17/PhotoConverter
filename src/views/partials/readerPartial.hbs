@@ -9,7 +9,12 @@
 		</div>
        </nav> 
 
-<div class="wrapper"><div class="current-location">
+<div class="wrapper">
+	{{!-- <div class="buttons">
+		
+		<form action="POST"><input type="button">test</form>
+	</div> --}}
+	<div class="current-location">
 	 <p> You are now in</p>
 	 <div class="current-location__path"> {{#each location}}
 	<a class="current-location__link" href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}</a>
@@ -45,3 +50,4 @@
 </div>
 </div>
 </div>
+
