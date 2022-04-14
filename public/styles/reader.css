@@ -178,4 +178,10 @@ a {
   background-color: #faf3e0;
 }
 
+.submitReader {
+  border-radius: 5px;
+  grid-column: 6/8;
+  grid-row: 9/10;
+}
+
 /*# sourceMappingURL=reader.css.map */

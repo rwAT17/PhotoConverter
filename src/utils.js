@@ -1,8 +1,8 @@
 const fsp = require('fs/promises')
 const path = require('path')
+const gm = require('gm')
 
 const readDirFull = async (dir, cb) => {
-
 	// reading a directory then returning an array of objects with names and last edit time
 	// of files of each file in declared directory
 	//
@@ -12,35 +12,47 @@ const readDirFull = async (dir, cb) => {
 	})
 }
 
-const readDirStat = async (dir) => {
+const readDirStat = async dir => {
 	const cb = async file => {
-		return fsp.stat(path.join( dir, file )).then(stat => {
+		return fsp.stat(path.join(dir, file)).then(stat => {
 			return {
-			name: file,
-			time: stat.mtime.toDateString(),
-			size: stat.size,
-			isFile: stat.isFile(),
-			isDirectory: stat.isDirectory(),
-		};});
+				name: file,
+				time: stat.mtime.toDateString(),
+				size: stat.size,
+				isFile: stat.isFile(),
+				isDirectory: stat.isDirectory(),
+			}
+		})
 	}
-	return readDirFull(dir,cb);
-}
-
-/*
-const readOnlyFiles = async (dir) => {
-	const cb = (file) => {
-		return `plik dupa ${file}`;
-	}
+	console.log()
 	return readDirFull(dir, cb)
 }
 
-const main = async () => {
-	console.log(JSON.stringify(await readOnlyFiles('/home/adam/')));
-	console.log(JSON.stringify(await readDirStat('/home/adam/')));
-
+const resizer = (x, y, z, outputDir) => {
+	x.forEach(file => {
+		// console.log(`${config.ROOT_DIR}/${file}`)
+		gm(`${y}${z}/${file}`)
+			.resize(200, 200)
+			.write('./converted' + '/resizes_' + file, function (err) {
+				if (err) console.log(err)
+			})
+	})
 }
 
-main()
-*/
-module.exports.readDirFull = readDirFull;
-module.exports.readDirStat = readDirStat;
+// const readOnlyFiles = async dir => {
+// 	const cb = file => {
+// 		return `plik dupa ${file}`
+// 	}
+// 	return readDirStat(dir, cb)
+// }
+
+// const main = async () => {
+// 	console.log(JSON.stringify(await readOnlyFiles('./')));
+// 	// console.log(JSON.stringify(await readDirStat('./')))
+// }
+
+// main()
+
+module.exports.resizer = resizer
+module.exports.readDirFull = readDirFull
+module.exports.readDirStat = readDirStat
