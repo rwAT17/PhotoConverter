@@ -74,7 +74,7 @@ router.post('/', async (req, res, next) => {
 	let queryParam = req.query.page // only query like : ../pics
 	console.log(queryParam)
 	// console.log(keys)
-	utils.resizer(keys, config.ROOT_DIR,)
+	utils.resizer(keys, config.ROOT_DIR, queryParam)
 })
 
 module.exports = _config => {
