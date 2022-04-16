@@ -28,10 +28,11 @@ const readDirStat = async dir => {
 	return readDirFull(dir, cb)
 }
 
-const resizer = (x, y, z, outputDir) => {
+const resizer = async (x, y, z, outputDir) => {
 	x.forEach(file => {
-		// console.log(`${config.ROOT_DIR}/${file}`)
-		gm(`${y}${z}/${file}`)
+console.log(`${z}${y}${file}`);
+
+		gm(`${z}${y}${file}`)
 			.resize(200, 200)
 			.write('./converted' + '/resizes_' + file, function (err) {
 				if (err) console.log(err)

@@ -33,7 +33,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-	keys = Object.keys(req.body)
+	keys = Object.keys(req.body.value)
 	resizer(keys)
 })
 

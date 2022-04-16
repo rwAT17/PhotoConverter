@@ -35,7 +35,7 @@ router.get('/', async (req, res, next) => {
 	const url = req.originalUrl
 	let originUrl = `${url}`
 	let queryParam = req.query.page // only query like : ../pics
-	console.log(queryParam)
+	// console.log(queryParam)
 	let files
 	/////// Localization
 	const str = queryParam.split('/') // splits query every '/'
@@ -71,10 +71,12 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
 	let keys = Object.keys(req.body)
+	let values = Object.values(req.body)[0]
 	let queryParam = req.query.page // only query like : ../pics
-	console.log(queryParam)
-	// console.log(keys)
-	utils.resizer(keys, config.ROOT_DIR, queryParam)
+	console.log(keys)
+	console.log(values)
+	console.log(config.ROOT_DIR)
+	utils.resizer(keys, values, config.ROOT_DIR)
 })
 
 module.exports = _config => {

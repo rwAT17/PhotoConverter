@@ -32,7 +32,7 @@ app.use(express.static('public'))
 app.use('/assets', express.static(path.join(__dirname, '../public')))
 
 const config = {
-    ROOT_DIR: ROOT_DIR
+	ROOT_DIR: ROOT_DIR,
 }
 
 const readerRouter = require('../routes/readerRouter')(config)
@@ -42,7 +42,7 @@ const addProfilesRouter = require('../routes/addProfileRouter')
 const processRouter = express.Router()
 
 // processRouter.post('/', async (req, res, next) => {
-// 	const test =(req.body) 
+// 	const test =(req.body)
 // 	console.log( Object.keys(test))
 // 	res.send( Object.keys(test))
 // })
