@@ -41,21 +41,12 @@ const profilesRouter = require('../routes/profilesRouter')
 const addProfilesRouter = require('../routes/addProfileRouter')
 const processRouter = express.Router()
 
-// processRouter.post('/', async (req, res, next) => {
-// 	const test =(req.body)
-// 	console.log( Object.keys(test))
-// 	res.send( Object.keys(test))
-// })
-
 app.use('/', mainPageRouter)
 app.use('/reader', readerRouter)
 app.use('/profiles', profilesRouter)
 app.use('/addProfile', addProfilesRouter)
-// app.use('/processImages', processRouter)
 
 app.use('/', function (err, req, res, next) {
-	console.log(req.originalUrl)
-
 	res.render('error', { layout: 'error' })
 })
 app.listen(port, () => console.log(`App listening to port ${port}`))

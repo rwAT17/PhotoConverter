@@ -29,6 +29,7 @@
 
 	<div class="columns-data">
 <form method='POST' action="/reader">
+<input type="hidden" name="dirName" value="{{dirName}}/">
         <div class="file-row">
                  {{#each fileList}} 
 					 {{#if isDirectory}}
@@ -44,9 +45,8 @@
 
 				 {{#each fileList}} 
 					 {{#if isFile}}
-                                   
 					<div class="columns-data__name">    
-					      <input type='checkbox' id='dupa' name='{{this.name}}' value='{{../dirName}}/'/>
+					      <input type='checkbox' id='dupa' name='filesArr' value='{{this.name}}'/>
                       <img id="imgMini" class="column-img"  src="/icons/5752709981538117042.svg" alt="">
                      <a class="columns-data__link" href='{{../url}}/{{this.name}}'> <div>{{this.name}}</div></a>
 					</div>
@@ -60,7 +60,6 @@
 				<input class="submitReader" type='submit' value='Convert' />
               </form>
 </div>
-
 
 
 {{!-- 

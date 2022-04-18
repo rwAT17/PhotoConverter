@@ -1,5 +1,4 @@
 const fsp = require('fs/promises')
-const gm = require('gm')
 const express = require('express')
 const utils = require('../src/utils')
 const router = express.Router()
@@ -63,20 +62,20 @@ router.get('/', async (req, res, next) => {
 			fileList: files,
 			layout: 'readerLayout',
 		})
-		// console.log(req.query.page)
 	} catch (err) {
 		next(err)
 	}
 })
 
 router.post('/', async (req, res, next) => {
-	let keys = Object.keys(req.body)
-	let values = Object.values(req.body)[0]
-	let queryParam = req.query.page // only query like : ../pics
-	console.log(keys)
-	console.log(values)
-	console.log(config.ROOT_DIR)
-	utils.resizer(keys, values, config.ROOT_DIR)
+	let files = req.body.filesArr
+	let dirName = req.body.dirName
+	try {
+		utils.resizer(files, dirName, config.ROOT_DIR)
+		res.redirect('back')
+	} catch (err) {
+		next(err)
+	}
 })
 
 module.exports = _config => {
