@@ -17,7 +17,6 @@ body {
 	background-color: #eabf9f;
 }
 
-
 a {
 	z-index: 1000;
 	font-size: 20px;
@@ -38,7 +37,6 @@ a {
 	background-color: #eabf9f;
 }
 
-
 .front {
 	width: 100vw;
 	height: 100vh;
@@ -53,7 +51,6 @@ a {
 	background-color: #ff8364;
 	z-index: 1000;
 	width: 100%;
-	
 }
 
 .nav-wrapper {
@@ -179,9 +176,15 @@ a {
 	background-color: #faf3e0;
 }
 
-
 .submitReader {
 	border-radius: 5px;
 	grid-column: 6/8;
 	grid-row: 9/10;
+}
+
+.form-submit {
+	grid-column: 3/-3;
+	grid-row: 9/-2;
+	
+	background-color: red;
 }

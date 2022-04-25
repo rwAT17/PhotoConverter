@@ -1,5 +1,6 @@
 const fsp = require('fs/promises')
 const express = require('express')
+const TestProfile = require('../src/Profiles')
 const utils = require('../src/utils')
 const router = express.Router()
 let config = undefined
@@ -53,9 +54,13 @@ router.get('/', async (req, res, next) => {
 		objArr.push(newObj)
 	}
 	////////
+	// console.log(objArr);
 	try {
+		// console.log(profilesFind)
+		const profilesFind = await TestProfile.find().lean()
 		files = await utils.readDirStat(`${config.ROOT_DIR}/${queryParam}`) // reader function
 		res.render('reader', {
+			profiles: profilesFind,
 			location: objArr,
 			dirName: queryParam,
 			url: originUrl, // req.originalUrl
@@ -67,11 +72,24 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
+// let obj = {
+// 	text: '600',
+// }
+
+// async function test() {
+// 	const profilex = new TestProfile({ size: `${obj.text}` })
+// 	await profilex.save()
+// 	// console.log(profilex)
+// }
+
 router.post('/', async (req, res, next) => {
+	
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
+	let testsize = req.body.size
 	try {
-		utils.resizer(files, dirName, config.ROOT_DIR)
+		utils.resizer(files, dirName, config.ROOT_DIR, testsize)
+		// console.log(test)
 		res.redirect('back')
 	} catch (err) {
 		next(err)

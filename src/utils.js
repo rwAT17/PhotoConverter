@@ -28,17 +28,23 @@ const readDirStat = async dir => {
 	return readDirFull(dir, cb)
 }
 
-const resizer = async (filesArr, dirName, rootDir, outputDir) => {
-	filesArr.forEach(file => {
-		// console.log(`${rootDir}${dirName}/${file}`)
-		gm(`${rootDir}${dirName}/${file}`)
-			.resize(200, 200)
-			.write('./converted' + '/resizes_' + file, function (err) {
-				if (err) console.log(err)
-			})
-		console.log(`Resized ${file}`)
-	})
-	console.log(`Finished resizing files from ${rootDir}${dirName}`)
+const resizer = async (filesArr, dirName, rootDir, size) => {
+	try {
+		
+		console.log(filesArr)
+		filesArr.forEach(file => {
+			// console.log(`${rootDir}${dirName}/${file}`)
+			gm(`${rootDir}${dirName}/${file}`)
+				.resize(size, size)
+				.write('./converted' + '/resizes_' + file, function (err) {
+					if (err) console.log(err)
+				})
+			console.log(`Resized ${file}`)
+		})
+		console.log(`Finished resizing files from ${rootDir}${dirName}`)
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 // const readOnlyFiles = async dir => {

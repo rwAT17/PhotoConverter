@@ -6,12 +6,17 @@ const querystring = require('querystring')
 const path = require('path')
 const events = require('events')
 const gm = require('gm')
+const mongoose = require('mongoose');
 
 const app = express()
 const port = 3000
 const { engine } = require('express-handlebars')
 
 const ROOT_DIR = process.env.ROOT_DIR || process.env.HOME + '/'
+
+mongoose.connect('mongodb://localhost/newDB', () => {
+	console.log('connected')
+})
 
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))

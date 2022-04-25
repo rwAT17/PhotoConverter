@@ -1,0 +1,32 @@
+<nav class="navigation">
+			<div class="nav-bar">
+		  <div class="nav-wrapper">
+		  <a class="nav-bar__link material-bubble" href="/">Home</a>
+	         <a class="nav-bar__link material-bubble" href="/profiles">Profiles</a>
+	         <a class="nav-bar__link material-bubble" href="/addProfile">Add Profile</a>
+	         <a class="nav-bar__link material-bubble" href="/">Docs</a>
+          </div>
+		</div>
+	</div>
+</nav>
+
+	<div class='wrapper'>
+	    <form method="DELETE" action="/addProfile">
+			{{#each profilesList}}
+		   <div>
+			   <input type="checkbox" name="profileID" value='{{this._id}}'>
+			   <p>{{this._id}}</p>
+			</div>
+	       {{/each}}
+	
+	          <input type="submit" value="delete">
+	    </form>
+
+		<br>
+		<br>
+
+		<form method="POST" action="/addProfile">
+		<input type="text" name="size" value="200">
+		<input type="submit" value="add">
+		</form>
+     </div>

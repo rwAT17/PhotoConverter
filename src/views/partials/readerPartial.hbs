@@ -1,7 +1,7 @@
   <nav class="navigation">
 			<div class="nav-bar">
 		  <div class="nav-wrapper">
-             <a class="nav-bar__link material-bubble" href="http://localhost:3000/main">Home</a>
+             <a class="nav-bar__link material-bubble" href="/">Home</a>
 	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/profiles">Profiles</a>
 	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/addProfile">Add Profile</a>
 	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/Docs">Docs</a>
@@ -55,11 +55,48 @@
 					{{/if}}
 			    {{/each}} 
         </div>
+     </div>
+    </div>
+<div class="form-submit">	
+	
+	
+	  <select name = "size">
+		  {{#each profiles}}
+            <option value = {{this.size}} selected>{{this.size}}</option>
+
+		  {{/each}}
+         </select>
+         
+    </select>
+	
+	
+	
+	
+	<input class="submitReader" type='submit' value='Convert' />
 </div>
-</div>
-				<input class="submitReader" type='submit' value='Convert' />
+
+			
               </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {{!-- 
