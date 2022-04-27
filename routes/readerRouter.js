@@ -72,23 +72,18 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-// let obj = {
-// 	text: '600',
-// }
-
-// async function test() {
-// 	const profilex = new TestProfile({ size: `${obj.text}` })
-// 	await profilex.save()
-// 	// console.log(profilex)
-// }
 
 router.post('/', async (req, res, next) => {
 	
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
-	let testsize = req.body.size
+	let size = req.body.size
+	let quality = req.body.quality
+	let waterMark = req.body.waterMark
+	let logo = req.body.logo
+	console.log(logo);
 	try {
-		utils.resizer(files, dirName, config.ROOT_DIR, testsize)
+		utils.resizer(files, dirName, config.ROOT_DIR, size, quality, waterMark, logo)
 		// console.log(test)
 		res.redirect('back')
 	} catch (err) {

@@ -11,22 +11,38 @@
 </nav>
 
 	<div class='wrapper'>
-	    <form method="DELETE" action="/addProfile">
-			{{#each profilesList}}
-		   <div>
-			   <input type="checkbox" name="profileID" value='{{this._id}}'>
-			   <p>{{this._id}}</p>
-			</div>
-	       {{/each}}
 	
-	          <input type="submit" value="delete">
-	    </form>
+	    
 
-		<br>
-		<br>
-
-		<form method="POST" action="/addProfile">
-		<input type="text" name="size" value="200">
-		<input type="submit" value="add">
+	
+<div class="add-profile">
+	
+		<form class="add-profile__form" method="POST" action="/addProfile">
+		    <input type="text" name="name" value="Name">
+		    <input type="text" name="size" value="100">
+		    <input type="text" name="quality" value="100">
+		    <input type="checkbox" name="waterMark" value="checked" checked>
+		    <input type="checkbox" name="logo" value="checked" checked>
+		    <input type="submit" value="add">
 		</form>
-     </div>
+ </div>
+
+	<div class="delete-profile">
+			<form method="post" action="/addProfile?_method=DELETE">
+		     <input type="hidden" name="_method" value="delete">
+			 {{#each profilesList}}
+		        <div>
+			     <input type="checkbox" name="test" value='{{this._id}}'>
+			      <p>{{this._id}}</p>
+			      <p>{{this.name}}</p>
+			      <p>{{this.size}}</p>
+			      <p>{{this.quality}}</p>
+			      <p>{{this.waterMark}}</p>
+			      <p>{{this.logo}}</p>
+			    </div>
+	         {{/each}}
+	        <input type="submit" value="dupa">
+	    </form>
+	</div>
+	
+</div>

@@ -6,7 +6,8 @@ const querystring = require('querystring')
 const path = require('path')
 const events = require('events')
 const gm = require('gm')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const methodOverride = require('method-override') 
 
 const app = express()
 const port = 3000
@@ -33,8 +34,8 @@ app.engine(
 app.use(express.json()) // for json // added instead of body parser
 app.use(express.urlencoded({ extended: true })) // added instead of body parser
 app.use(express.static('public'))
-
 app.use('/assets', express.static(path.join(__dirname, '../public')))
+app.use(methodOverride('_method')) // to use DELETE and PUT mothods
 
 const config = {
 	ROOT_DIR: ROOT_DIR,

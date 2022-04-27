@@ -28,14 +28,15 @@ const readDirStat = async dir => {
 	return readDirFull(dir, cb)
 }
 
-const resizer = async (filesArr, dirName, rootDir, size) => {
+const resizer = async (filesArr, dirName, rootDir, size, quality, waterMark, logo) => {
 	try {
-		
 		console.log(filesArr)
 		filesArr.forEach(file => {
 			// console.log(`${rootDir}${dirName}/${file}`)
 			gm(`${rootDir}${dirName}/${file}`)
 				.resize(size, size)
+				.quality(quality)
+				.drawText(10, 10, logo)
 				.write('./converted' + '/resizes_' + file, function (err) {
 					if (err) console.log(err)
 				})

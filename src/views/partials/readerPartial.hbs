@@ -59,15 +59,23 @@
     </div>
 <div class="form-submit">	
 	
-	
 	  <select name = "size">
 		  {{#each profiles}}
             <option value = {{this.size}} selected>{{this.size}}</option>
-
 		  {{/each}}
-         </select>
+      </select>
+	  <select name = "quality">
+		  {{#each profiles}}
+            <option value = {{this.quality}} selected>{{this.quality}}</option>
+		  {{/each}}
+      </select>
+	  <select name = "logo">
+		  {{#each profiles}}
+            <option value = {{this.logo}} selected>{{this.logo}}</option>
+		  {{/each}}
+      </select>
          
-    </select>
+
 	
 	
 	

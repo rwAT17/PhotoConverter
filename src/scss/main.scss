@@ -63,7 +63,7 @@ a {
 	height: 5rem;
 	background-color: #1e212d;
 	border: none;
- font-size: 2rem;
+	font-size: 2rem;
 }
 
 .nav-bar__link {
@@ -86,7 +86,6 @@ a {
 	grid-column: 3/11;
 	grid-row: 2/-2;
 	font-size: 2rem;
-	
 }
 
 .search-bar {
@@ -102,9 +101,33 @@ a {
 .dir-link {
 	text-decoration: none;
 
-	&__element{
+	&__element {
 		text-decoration: none;
 		margin: 1rem;
+	}
+}
+
+.delete-profile {
+	display: flex;
+	// position: relative;
+	align-items: center;
+	grid-column: 3/11;
+	grid-row: 3/-2;
+	justify-content: center;
+	background-color: orange;
+}
+
+.add-profile {
+	grid-column: 3/11;
+	grid-row: 2/3;
 	
+	&__form {
+		display: flex;
+		flex-direction: column;
+		// position: relative;
+		align-items: center;
+		justify-content: center;
+
+		background-color: blueviolet;
 	}
 }
