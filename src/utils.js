@@ -36,7 +36,9 @@ const resizer = async (filesArr, dirName, rootDir, size, quality, waterMark, log
 			gm(`${rootDir}${dirName}/${file}`)
 				.resize(size, size)
 				.quality(quality)
-				.drawText(10, 10, logo)
+				.fill('#fd01fe')
+				.drawText(100, 100, logo)
+				.fontSize(80)
 				.write('./converted' + '/resizes_' + file, function (err) {
 					if (err) console.log(err)
 				})

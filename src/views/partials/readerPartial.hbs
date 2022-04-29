@@ -59,7 +59,18 @@
     </div>
 <div class="form-submit">	
 	
-	  <select name = "size">
+<select name="profile">
+	{{#each profiles}}
+	<option value="{'size':[{{this.size}}], 'quality':[{{this.quality}}]'}">{{this.name}}
+     {{!-- <input type="hidden" name="size" value="{'size':[{{this.size}}], 'quality':[{{this.quality}}]'}">
+     <input type="hidden" name="quality" value='{{this.quality}}'>
+     <input type="hidden" name="logo" value='{{this.logo}}'> --}}
+	</option>
+	{{/each}}
+</select>
+
+
+	  {{!-- <select name = "size">
 		  {{#each profiles}}
             <option value = {{this.size}} selected>{{this.size}}</option>
 		  {{/each}}
@@ -74,11 +85,8 @@
             <option value = {{this.logo}} selected>{{this.logo}}</option>
 		  {{/each}}
       </select>
-         
+          --}}
 
-	
-	
-	
 	
 	<input class="submitReader" type='submit' value='Convert' />
 </div>

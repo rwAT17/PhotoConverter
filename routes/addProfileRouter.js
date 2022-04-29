@@ -23,10 +23,12 @@ const deleteProfile = profileId => {
 const addProfile = async (name, size, quality, waterMark, logo) => {
 	const profile = new TestProfile({
 		name: `${name}`,
-		size: `${size}`,
-		quality: `${quality}`,
-		waterMark: `${waterMark}`,
-		logo: `${logo}`,
+		test: {
+			size: `${size}`,
+			quality: `${quality}`,
+			waterMark: `${waterMark}`,
+			logo: `${logo}`,
+		},
 	})
 	await profile.save()
 	// console.log()
@@ -34,10 +36,12 @@ const addProfile = async (name, size, quality, waterMark, logo) => {
 
 router.get('/', async (req, res, next) => {
 	const profilesFind = await TestProfile.find().lean()
+	let testFind = await TestProfile.find({ name: 'dupa' }).lean()
+	console.log(testFind)
 	// console.log(profilesFind)
 	res.render('addProfile', {
 		profilesList: profilesFind,
-		layout: 'mainLayout',
+		layout: 'addProfile',
 	})
 })
 

@@ -78,32 +78,37 @@ a {
 	}
 }
 
-.search {
+input[type='checkobox']{
+	-webkit-appearance: none;
+	appearance: none;
+	.dupa{
+		background-color: red;
+	}
+	
+  }
+
+
+.delete-profile {
 	display: flex;
-	flex-direction: column;
+	// position: relative;
 	align-items: center;
-	justify-content: center;
 	grid-column: 3/11;
-	grid-row: 2/-2;
-	font-size: 2rem;
+	grid-row: 3/-2;
+	justify-content: center;
+	background-color: orange;
 }
 
-.search-bar {
-	display: inline-block;
-	min-height: 5%;
-	width: 100%;
-	background-color: #faf3e0;
-	border: 3px solid black;
-	border-radius: 20px;
-	margin: 2rem;
-}
+.add-profile {
+	grid-column: 3/11;
+	grid-row: 2/3;
+	
+	&__form {
+		display: flex;
+		flex-direction: column;
+		// position: relative;
+		align-items: center;
+		justify-content: center;
 
-.dir-link {
-	text-decoration: none;
-
-	&__element {
-		text-decoration: none;
-		margin: 1rem;
+		background-color: blueviolet;
 	}
 }
-

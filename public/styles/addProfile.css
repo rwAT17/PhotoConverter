@@ -78,32 +78,33 @@ a {
   border: none;
 }
 
-.search {
+input[type=checkobox] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type=checkobox] .dupa {
+  background-color: red;
+}
+
+.delete-profile {
+  display: flex;
+  align-items: center;
+  grid-column: 3/11;
+  grid-row: 3/-2;
+  justify-content: center;
+  background-color: orange;
+}
+
+.add-profile {
+  grid-column: 3/11;
+  grid-row: 2/3;
+}
+.add-profile__form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-column: 3/11;
-  grid-row: 2/-2;
-  font-size: 2rem;
+  background-color: blueviolet;
 }
 
-.search-bar {
-  display: inline-block;
-  min-height: 5%;
-  width: 100%;
-  background-color: #faf3e0;
-  border: 3px solid black;
-  border-radius: 20px;
-  margin: 2rem;
-}
-
-.dir-link {
-  text-decoration: none;
-}
-.dir-link__element {
-  text-decoration: none;
-  margin: 1rem;
-}
-
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=addProfile.css.map */

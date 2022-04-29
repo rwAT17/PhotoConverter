@@ -72,23 +72,38 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-
 router.post('/', async (req, res, next) => {
-	
+	let test  = req.body.profile.size
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
 	let size = req.body.size
 	let quality = req.body.quality
 	let waterMark = req.body.waterMark
 	let logo = req.body.logo
-	console.log(logo);
-	try {
-		utils.resizer(files, dirName, config.ROOT_DIR, size, quality, waterMark, logo)
-		// console.log(test)
-		res.redirect('back')
-	} catch (err) {
-		next(err)
+
+	if (logo == 1) {
+		logo = 'logo'
+	} else {
+		logo = 'undefined'
 	}
+
+	if (waterMark == 1) {
+		waterMark = 'waterMark' 
+	} else {
+		waterMark = 'undefined'
+	}
+console.log(test);
+	// console.log(logo)
+	// console.log(size);
+	// console.log(quality);
+	// console.log(logo);
+	// try {
+	// 	utils.resizer(files, dirName, config.ROOT_DIR, size, quality, waterMark, logo)
+	// 	// console.log(test)
+	// 	res.redirect('back')
+	// } catch (err) {
+	// 	next(err)
+	// }
 })
 
 module.exports = _config => {
