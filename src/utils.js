@@ -1,6 +1,7 @@
 const fsp = require('fs/promises')
 const path = require('path')
 const gm = require('gm')
+const { profile } = require('console')
 
 const readDirFull = async (dir, cb) => {
 	// reading a directory then returning an array of objects with names and last edit time
@@ -28,20 +29,29 @@ const readDirStat = async dir => {
 	return readDirFull(dir, cb)
 }
 
-const resizer = async (filesArr, dirName, rootDir, size, quality, waterMark, logo) => {
+const resizer = async (filesArr, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
+	console.log(`${rootDir}${dirName}${profileName}`)
+
 	try {
-		console.log(filesArr)
+		let newDir = await fsp.mkdir(`${rootDir}${dirName}${profileName}`, err => {
+			if (err) throw err
+		})
+
 		filesArr.forEach(file => {
 			// console.log(`${rootDir}${dirName}/${file}`)
 			gm(`${rootDir}${dirName}/${file}`)
-				.resize(size, size)
+				// .resize(size, size)
 				.quality(quality)
 				.fill('#fd01fe')
-				.drawText(100, 100, logo)
-				.fontSize(80)
-				.write('./converted' + '/resizes_' + file, function (err) {
+				.drawText(size * 0.8, size * 0.5, logo)
+				.fontSize(size * 0.1)
+				.fill('#fd01fe')
+				.drawText(size * 0.5, size * 0.8, logo)
+				.fontSize(size * 0.1)
+				.write(`${rootDir}${dirName}${profileName}/` + file, function (err) {
 					if (err) console.log(err)
 				})
+
 			console.log(`Resized ${file}`)
 		})
 		console.log(`Finished resizing files from ${rootDir}${dirName}`)

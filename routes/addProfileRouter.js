@@ -36,7 +36,7 @@ const addProfile = async (name, size, quality, waterMark, logo) => {
 
 router.get('/', async (req, res, next) => {
 	const profilesFind = await TestProfile.find().lean()
-	let testFind = await TestProfile.find({ name: 'dupa' }).lean()
+	let testFind = await TestProfile.find({ name: 'dupa' })
 	console.log(testFind)
 	// console.log(profilesFind)
 	res.render('addProfile', {

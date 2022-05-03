@@ -2,6 +2,7 @@ const fsp = require('fs/promises')
 const express = require('express')
 const TestProfile = require('../src/Profiles')
 const utils = require('../src/utils')
+const { get } = require('express/lib/response')
 const router = express.Router()
 let config = undefined
 
@@ -73,37 +74,36 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-	let test  = req.body.profile.size
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
-	let size = req.body.size
-	let quality = req.body.quality
-	let waterMark = req.body.waterMark
-	let logo = req.body.logo
+	let profileName = req.body.profile
+	console.log(profileName)
+	let testFind = await TestProfile.findOne({ name: `${profileName}` })
+
+	let size = testFind.test.size
+	let quality = testFind.test.quality
+	let waterMark = testFind.test.waterMark
+	let logo = testFind.test.logo
 
 	if (logo == 1) {
-		logo = 'logo'
+		logo = 'dupa'
 	} else {
 		logo = 'undefined'
 	}
 
 	if (waterMark == 1) {
-		waterMark = 'waterMark' 
+		waterMark = 'waterMark'
 	} else {
 		waterMark = 'undefined'
 	}
-console.log(test);
-	// console.log(logo)
-	// console.log(size);
-	// console.log(quality);
-	// console.log(logo);
-	// try {
-	// 	utils.resizer(files, dirName, config.ROOT_DIR, size, quality, waterMark, logo)
-	// 	// console.log(test)
-	// 	res.redirect('back')
-	// } catch (err) {
-	// 	next(err)
-	// }
+
+	try {
+		utils.resizer(files, dirName, config.ROOT_DIR, profileName, size, quality, waterMark, logo)
+		console.log(logo)
+		res.redirect('back')
+	} catch (err) {
+		next(err)
+	}
 })
 
 module.exports = _config => {
