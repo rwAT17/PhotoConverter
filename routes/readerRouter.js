@@ -78,12 +78,12 @@ router.post('/', async (req, res, next) => {
 	let dirName = req.body.dirName
 	let profileName = req.body.profile
 	console.log(profileName)
-	let testFind = await TestProfile.findOne({ name: `${profileName}` })
+	let findProfile = await TestProfile.findOne({ name: `${profileName}` })
 
-	let size = testFind.test.size
-	let quality = testFind.test.quality
-	let waterMark = testFind.test.waterMark
-	let logo = testFind.test.logo
+	let size = findProfile.parameters.size
+	let quality = findProfile.parameters.quality
+	let waterMark = findProfile.parameters.waterMark
+	let logo = findProfile.parameters.logo
 
 	if (logo == 1) {
 		logo = 'dupa'
@@ -99,7 +99,7 @@ router.post('/', async (req, res, next) => {
 
 	try {
 		utils.resizer(files, dirName, config.ROOT_DIR, profileName, size, quality, waterMark, logo)
-		console.log(logo)
+
 		res.redirect('back')
 	} catch (err) {
 		next(err)

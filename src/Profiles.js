@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const profileSchema = new mongoose.Schema({
 	name: String,
-	test: {
+	parameters: {
 		size: String,
 		quality: String,
 		waterMark: String,

@@ -1,0 +1,18 @@
+	<div class="delete-profile">
+		<h1>Delete profile</h1>
+			<form method="post" action="/addProfile?_method=DELETE">
+		     <input type="hidden" name="_method" value="delete">
+			 {{#each profilesList}}
+		        <div>
+			     <input type="checkbox" name="test" value='{{this._id}}'>
+			      <p>{{this._id}}</p>
+			      <p>{{this.name}}</p>
+			      <p>{{this.size}}</p>
+			      <p>{{this.quality}}</p>
+			      <p>{{this.waterMark}}</p>
+			      <p>{{this.logo}}</p>
+			    </div>
+	         {{/each}}
+	        <input type="submit" value="dupa">
+	    </form>
+	</div>

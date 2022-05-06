@@ -1,0 +1,49 @@
+<nav class="navigation">
+	<div class="nav-bar">
+		<div class="nav-wrapper">
+			<a class="nav-bar__link material-bubble" href="/">Home</a>
+			<a class="nav-bar__link material-bubble" href="/profiles">Profiles</a>
+			<a class="nav-bar__link material-bubble" href="/addProfile">Add Profile</a>
+			<a class="nav-bar__link material-bubble" href="/">Docs</a>
+		</div>
+	</div>
+	</div>
+</nav>
+
+<div class='wrapper'>
+
+
+
+	<div class="add-profile">
+		<h1>Edit profile</h1>
+		<form class="add-profile__form" method="POST" action="/addProfile">
+			<div class="add-profile__container">
+				<div class="add-profile__input">
+
+					<label class="add-profile" for="">Name</label>
+					<input class="dupa" type="text" name="newName" value="{{oldParameters.name}}">
+				</div>
+				<div class="add-profile__input">
+					<label for="">Size</label>
+					<input class="dupa" type="text" name="newSize" value="{{oldParameters.parameters.size}}">
+				</div>
+				<div class="add-profile__input">
+					<label for="">Quality</label>
+					<input class="dupa" type="text" name="newQuality" value="{{oldParameters.parameters.quality}}">
+				</div>
+				<div class="add-profile__check">
+					<input class="dupa" type="hidden" name="newWaterMark" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value">
+					<label for="">WaterMark</label>
+				</div>
+				<div class="add-profile__check">
+					<input class="dupa" type="hidden" name="newLogo" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value">
+					<label for="">Logo</label>
+				</div>
+
+			</div>
+			<input type="hidden" name="oldName" value="{{oldParameters.name}}">
+			<button name='save' formaction='/editHandler' type='submit' value='{{this.name}}'>save</button>
+		</form>
+	</div>

@@ -10,20 +10,11 @@ const methodOverride = require('method-override')
 
 const router = express.Router()
 
-const deleteProfile = profileId => {
-	TestProfile.find({ _id: profileId })
-		.deleteOne({ _id: profileId })
-		.then(function () {
-			console.log('Data deleted') // Success
-		})
-		.catch(function (err) {
-			console.log(err) // Failure
-		})
-}
+
 const addProfile = async (name, size, quality, waterMark, logo) => {
 	const profile = new TestProfile({
 		name: `${name}`,
-		test: {
+		parameters: {
 			size: `${size}`,
 			quality: `${quality}`,
 			waterMark: `${waterMark}`,
@@ -37,7 +28,7 @@ const addProfile = async (name, size, quality, waterMark, logo) => {
 router.get('/', async (req, res, next) => {
 	const profilesFind = await TestProfile.find().lean()
 	let testFind = await TestProfile.find({ name: 'dupa' })
-	console.log(testFind)
+
 	// console.log(profilesFind)
 	res.render('addProfile', {
 		profilesList: profilesFind,
@@ -55,23 +46,23 @@ router.post('/', async (req, res, next) => {
 
 	try {
 		await addProfile(name, size, quality, waterMark, logo)
-		// await addProfile(name)
 		console.log(`Added profile with name: ${name}`)
+		console.log(name, size, quality, waterMark, logo)
 		res.redirect('back')
 	} catch (err) {
 		next(err)
 	}
 })
 
-router.delete('/', async (req, res, next) => {
-	test = req.body.test
-	console.log(test)
+// router.delete('/', async (req, res, next) => {
+// 	test = req.body.parameters
+// 	console.log(test)
 
-	test.forEach(id => {
-		deleteProfile(id)
-		console.log(`deleted profile with id:${id}`)
-	})
+// 	test.forEach(id => {
+// 		deleteProfile(id)
+// 		console.log(`deleted profile with id:${id}`)
+// 	})
 
-	res.redirect('back')
-})
+// 	res.redirect('back')
+// })
 module.exports = router

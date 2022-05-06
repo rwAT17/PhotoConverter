@@ -1,66 +1,92 @@
 <nav class="navigation">
-			<div class="nav-bar">
-		  <div class="nav-wrapper">
-		  <a class="nav-bar__link material-bubble" href="/">Home</a>
-	         <a class="nav-bar__link material-bubble" href="/profiles">Profiles</a>
-	         <a class="nav-bar__link material-bubble" href="/addProfile">Add Profile</a>
-	         <a class="nav-bar__link material-bubble" href="/">Docs</a>
-          </div>
+	<div class="nav-bar">
+		<div class="nav-wrapper">
+			<a class="nav-bar__link material-bubble" href="/">Home</a>
+			<a class="nav-bar__link material-bubble" href="/profiles">Profiles</a>
+			<a class="nav-bar__link material-bubble" href="/addProfile">Add Profile</a>
+			<a class="nav-bar__link material-bubble" href="/">Docs</a>
 		</div>
+	</div>
 	</div>
 </nav>
 
-	<div class='wrapper'>
-	
-	    
+<div class='wrapper'>
 
-	
-     <div class="add-profile">
+
+
+	<div class="add-profile">
+		<h1>Add profile</h1>
 		<form class="add-profile__form" method="POST" action="/addProfile">
-		<div class="add-profile__container">		 
-			  <div class="add-profile__input"> 
-				  <label class="add-profile" for="">Name</label>
-		    <input class="dupa"  type="text" name="name" value="Name">
-			</div>
-			<div class="add-profile__input">
-				<label for="">Size</label>
-			<input class="dupa" type="text" name="size" value="100">
-			</div>
-		    	<div class="add-profile__input">
+			<div class="add-profile__container">
+				<div class="add-profile__input">
+					<label class="add-profile" for="">Name</label>
+					<input class="dupa" type="text" name="name" value="">
+				</div>
+				<div class="add-profile__input">
+					<label for="">Size</label>
+					<input class="dupa" type="text" name="size" value="">
+				</div>
+				<div class="add-profile__input">
 					<label for="">Quality</label>
-		         <input class="dupa" type="text" name="quality" value="100">
-			</div>
+					<input class="dupa" type="text" name="quality" value="">
+				</div>
 				<div class="add-profile__check">
-			<input class="dupa" type="hidden" name="waterMark" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+					<input class="dupa" type="hidden" name="waterMark" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value">
 					<label for="">WaterMark</label>
-			</div>
-				<div class="add-profile__check">	
-			<input class="dupa" type="hidden" name="logo" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+				</div>
+				<div class="add-profile__check">
+					<input class="dupa" type="hidden" name="logo" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value">
 					<label for="">Logo</label>
-			</div>
-			
+				</div>
+
 			</div>
 
-		    <input class="dupa" type="submit" value="dupa">
+			<input class="dupa" type="submit" value="dupa">
 		</form>
- </div>
-
-	<div class="delete-profile">
-			<form method="post" action="/addProfile?_method=DELETE">
-		     <input type="hidden" name="_method" value="delete">
-			 {{#each profilesList}}
-		        <div>
-			     <input type="checkbox" name="test" value='{{this._id}}'>
-			      <p>{{this._id}}</p>
-			      <p>{{this.name}}</p>
-			      <p>{{this.size}}</p>
-			      <p>{{this.quality}}</p>
-			      <p>{{this.waterMark}}</p>
-			      <p>{{this.logo}}</p>
-			    </div>
-	         {{/each}}
-	        <input type="submit" value="dupa">
-	    </form>
 	</div>
-	
+
+	<!-- <div class="edit-profile">
+		<h1>Edit profile</h1>
+		<form method="post" action="/addProfile?_method=PUT">
+			<input type="hidden" name="_method" value="put">
+			<div class="edit-profile__new-values">
+				<div class="add-profile__container">
+					<div class="add-profile__input">
+						<label class="add-profile" for="">Name</label>
+						<input class="dupa" type="text" name="newName" value="">
+					</div>
+					<div class="add-profile__input">
+						<label for="">Size</label>
+						<input class="dupa" type="text" name="newSize" value="">
+					</div>
+					<div class="add-profile__input">
+						<label for="">Quality</label>
+						<input class="dupa" type="text" name="quality" value="">
+					</div>
+					<div class="add-profile__check">
+						<input class="dupa" type="hidden" name="newWaterMark" value="0"><input type="checkbox"
+							onclick="this.previousSibling.value=1-this.previousSibling.value">
+						<label for="">WaterMark</label>
+					</div>
+					<div class="add-profile__check">
+						<input class="dupa" type="hidden" name="newLogo" value="0"><input type="checkbox"
+							onclick="this.previousSibling.value=1-this.previousSibling.value">
+						<label for="">Logo</label>
+					</div>
+				</div>
+
+				<select name="profile">
+					{{#each profilesList}}
+					<option value='{{this.name}}'>
+						{{this.name}}
+					</option>
+					{{/each}}
+					</selec>
+					<input class="dupa" type="submit" value="dupa">
+			</div>
+		</form>
+	</div> -->
+
 </div>

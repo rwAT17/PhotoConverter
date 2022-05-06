@@ -7,7 +7,7 @@ const path = require('path')
 const events = require('events')
 const gm = require('gm')
 const mongoose = require('mongoose')
-const methodOverride = require('method-override') 
+const methodOverride = require('method-override')
 
 const app = express()
 const port = 3000
@@ -45,12 +45,17 @@ const readerRouter = require('../routes/readerRouter')(config)
 const mainPageRouter = require('../routes/mainPageRouter')(config)
 const profilesRouter = require('../routes/profilesRouter')
 const addProfilesRouter = require('../routes/addProfileRouter')
-const processRouter = express.Router()
+const deleteProfilesRouter = require('../routes/deleteProfileRouter')
+const editProfilesRouter = require('../routes/editProfileRouter')
+const editHandler = require('../routes/services/editHandler')
 
 app.use('/', mainPageRouter)
 app.use('/reader', readerRouter)
 app.use('/profiles', profilesRouter)
 app.use('/addProfile', addProfilesRouter)
+app.use('/deleteProfile', deleteProfilesRouter)
+app.use('/editProfile', editProfilesRouter)
+app.use('/editHandler', editHandler)
 
 app.use('/', function (err, req, res, next) {
 	res.render('error', { layout: 'error' })

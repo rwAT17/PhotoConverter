@@ -1,3 +1,4 @@
+const TestProfile = require('../src/Profiles')
 const fsp = require('fs/promises')
 const express = require('express')
 const querystring = require('querystring')
@@ -9,7 +10,12 @@ const port = 3000 // express port
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
-	res.send('profiles')
+	const profilesFind = await TestProfile.find().lean()
+	res.render('profiles', {
+		profilesList: profilesFind,
+		layout: 'profiles',
+
+	})
 })
 
 module.exports = router

@@ -1,0 +1,30 @@
+<nav class='navigation'>
+	<div class='nav-bar'>
+		<div class='nav-wrapper'>
+			<a class='nav-bar__link material-bubble' href='/'>Home</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/profiles'>Profiles</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/addProfile'>Add Profile</a>
+			<a class='nav-bar__link material-bubble' href='http://localhost:3000/Docs'>Docs</a>
+		</div>
+	</div>
+</nav>
+
+<div class='wrapper'>
+	<div class='profiles-container'>
+		<form class='profile-form' method='POST'>
+			{{#each profilesList}}
+				<div class='profile'>
+					<p>{{this.name}}</p>
+					<p>{{this.parameters.size}}</p>
+					<p>{{this.parameters.quality}}</p>
+					<p>{{this.parameters.logo}}</p>
+					<p>{{this.parameters.waterMark}}</p>
+					<button name='delete' formaction='/deleteProfile' type='submit' value='{{this.name}}'>delete</button>
+					<button name='edit' formaction='/editProfile' type='submit' value='{{this.name}}'>edit</button>
+				</div>
+
+			{{/each}}
+		</form>
+	</div>
+
+</div>
