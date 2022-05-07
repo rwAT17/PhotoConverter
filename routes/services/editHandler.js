@@ -10,9 +10,10 @@ const app = express()
 const port = 3000 // express port
 
 const router = express.Router()
-const newProfile = async (oldName, newName, newSize, newQuality, newWaterMark, newLogo) => {
+
+const newProfile = async (profileId, newName, newSize, newQuality, newWaterMark, newLogo) => {
 	await TestProfile.findOneAndUpdate(
-		{ name: `${oldName}` },
+		{ _id: `${profileId}` },
 		{
 			name: `${newName}`,
 			parameters: {
@@ -26,16 +27,17 @@ const newProfile = async (oldName, newName, newSize, newQuality, newWaterMark, n
 }
 
 router.post('/', async (req, res, next) => {
-	let oldName = req.body.oldName
+	let profileId = req.body.profileId
 	let newName = req.body.newName
 	let size = req.body.newSize
 	let quality = req.body.newQuality
 	let waterMark = req.body.newWaterMark
 	let logo = req.body.newLogo
 	// console.log(name, size, quality, waterMark, logo)
+	console.log(profileId)
 
 	try {
-		await newProfile(oldName, newName, size, quality, waterMark, logo)
+		await newProfile(profileId, newName, size, quality, waterMark, logo)
 
 		res.redirect('/')
 	} catch (err) {

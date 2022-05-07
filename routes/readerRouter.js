@@ -85,6 +85,7 @@ router.post('/', async (req, res, next) => {
 	let waterMark = findProfile.parameters.waterMark
 	let logo = findProfile.parameters.logo
 
+	console.log(size, quality, waterMark, logo)
 	if (logo == 1) {
 		logo = 'dupa'
 	} else {
