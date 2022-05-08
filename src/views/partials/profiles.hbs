@@ -14,11 +14,38 @@
 		<form class='profile-form' method='POST'>
 			{{#each profilesList}}
 				<div class='profile'>
-					<p>{{this.name}}</p>
-					<p>{{this.parameters.size}}</p>
-					<p>{{this.parameters.quality}}</p>
-					<p>{{this.parameters.logo}}</p>
-					<p>{{this.parameters.waterMark}}</p>
+					<div class='profile__position'>
+						<p class='profile__name'>Name</p>
+						<p class='profile__value'>{{this.name}}</p>
+					</div>
+					<div class='profile__position'>
+						<p class='profile__name'>Size</p>
+						<p class='profile__value'>{{this.parameters.size}}</p>
+					</div>
+					<div class='profile__position'>
+						<p class='profile__name'>Quality</p>
+						<p class='profile__value'>{{this.parameters.quality}}</p>
+					</div>
+					<div class='profile__position'>
+						<p class='profile__name'>Logo</p>
+						<p class='profile__name'>Water Mark</p>
+						{{#if_eq this.parameters.logo '1'}}
+							<p class='profile__value'>Included</p>
+						{{else}}
+							<p class='profile__value'>Not included</p>
+						{{/if_eq}}
+
+					</div>
+					<div class='profile__position'>
+						<p class='profile__name'>Water Mark</p>
+						{{#if_eq this.parameters.waterMark '1'}}
+							<p class='profile__value'>Included</p>
+						{{else}}
+							<p class='profile__value'>Not included</p>
+						{{/if_eq}}
+
+					</div>
+
 					<button name='delete' formaction='/deleteProfile' type='submit' value='{{this.name}}'>delete</button>
 					<button name='edit' formaction='/editProfile' type='submit' value='{{this._id}}'>edit</button>
 				</div>

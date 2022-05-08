@@ -11,6 +11,7 @@ const methodOverride = require('method-override')
 
 const app = express()
 const port = 3000
+const expressHbs = require('express-handlebars')
 const { engine } = require('express-handlebars')
 
 const ROOT_DIR = process.env.ROOT_DIR || process.env.HOME + '/'
@@ -49,6 +50,19 @@ const deleteProfilesRouter = require('../routes/deleteProfileRouter')
 const editProfilesRouter = require('../routes/editProfileRouter')
 const editHandler = require('../routes/services/editHandler')
 
+var hbs = expressHbs.create({})
+
+// if ==  hbs helper 
+
+hbs.handlebars.registerHelper('if_eq', function (a, b, opts) {
+	if (a == b) {
+		return opts.fn(this)
+	} else {
+		return opts.inverse(this)
+	}
+})
+// register new function
+
 app.use('/', mainPageRouter)
 app.use('/reader', readerRouter)
 app.use('/profiles', profilesRouter)
@@ -56,6 +70,14 @@ app.use('/addProfile', addProfilesRouter)
 app.use('/deleteProfile', deleteProfilesRouter)
 app.use('/editProfile', editProfilesRouter)
 app.use('/editHandler', editHandler)
+
+// engine.registerHelper('if_eq', function (a, b, opts) {
+// 	if (a == b) {
+// 		return opts.fn(this)
+// 	} else {
+// 		return opts.inverse(this)
+// 	}
+// })
 
 app.use('/', function (err, req, res, next) {
 	res.render('error', { layout: 'error' })
