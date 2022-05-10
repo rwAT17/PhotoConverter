@@ -25,21 +25,25 @@ const readDirStat = async dir => {
 			}
 		})
 	}
-	console.log()
 	return readDirFull(dir, cb)
 }
 
-const resizer = async (filesArr, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
-	console.log(`${rootDir}${dirName}${profileName}`)
+const resizing = i => {
+	for (let i = 0; i < 100; i++) {
+		console.log(`progress :${i}`)
+	}
+}
+
+const resizer = async (input, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
+	// console.log(`${rootDir}${dirName}${profileName}`)
 
 	try {
 		let newDir = await fsp.mkdir(`${rootDir}${dirName}${profileName}`, err => {
 			if (err) throw err
 		})
 
-		filesArr.forEach(file => {
-			// console.log(`${rootDir}${dirName}/${file}`)
-			gm(`${rootDir}${dirName}/${file}`)
+		if (typeof input === 'string') {
+			gm(`${rootDir}${dirName}/${input}`)
 				// .resize(size, size)
 				.quality(quality)
 				.fill('#fd01fe')
@@ -48,12 +52,33 @@ const resizer = async (filesArr, dirName, rootDir, profileName, size, quality, w
 				.fill('#fd01fe')
 				.drawText(size * 0.5, size * 0.8, logo)
 				.fontSize(size * 0.1)
-				.write(`${rootDir}${dirName}${profileName}/` + file, function (err) {
+				.monitor(console.log(resizing(1)))
+				.write(`${rootDir}${dirName}${profileName}/` + input, function (err) {
 					if (err) console.log(err)
 				})
 
 			console.log(`Resized ${file}`)
-		})
+		} else {
+			input.forEach(file => {
+				// console.log(`${rootDir}${dirName}/${file}`)
+				gm(`${rootDir}${dirName}/${file}`)
+					// .resize(size, size)
+					.quality(quality)
+					.fill('#fd01fe')
+					.drawText(size * 0.8, size * 0.5, logo)
+					.fontSize(size * 0.1)
+					.fill('#fd01fe')
+					.drawText(size * 0.5, size * 0.8, logo)
+					.fontSize(size * 0.1)
+					.monitor(console.log(resizing(1)))
+					.write(`${rootDir}${dirName}${profileName}/` + file, function (err) {
+						if (err) console.log(err)
+					})
+
+				console.log(`Resized ${file}`)
+			})
+		}
+
 		console.log(`Finished resizing files from ${rootDir}${dirName}`)
 	} catch (err) {
 		console.log(err)

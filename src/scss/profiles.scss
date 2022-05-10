@@ -49,6 +49,7 @@ a {
 	grid-column: 1/-1;
 	background-color: #ff8364;
 	width: 100%;
+	z-index: 10123200;
 }
 
 .nav-wrapper {
@@ -100,10 +101,10 @@ a {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 25%;
+	width: 30%;
 	min-width: 300px;
 	font-size: 2rem;
-	margin: 2rem;
+	margin: 4rem;
 	border-radius: 10px;
 	// background-color: royalblue;
 
@@ -113,7 +114,7 @@ a {
 		flex-direction: column;
 		min-width: 100%;
 		text-align: left;
-		margin: 0.8rem;
+		margin: 1rem;
 		padding: 0 0.5rem;
 		border: 3px solid #1e212d;
 		border-radius: 5px;

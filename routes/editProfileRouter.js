@@ -1,12 +1,5 @@
-const TestProfile = require('../src/Profiles')
-const fsp = require('fs/promises')
+const Profile = require('../src/Profiles')
 const express = require('express')
-const querystring = require('querystring')
-const bodyParser = require('body-parser')
-const path = require('path')
-const res = require('express/lib/response')
-const app = express()
-const port = 3000 // express port
 
 const router = express.Router()
 
@@ -25,7 +18,7 @@ const router = express.Router()
 router.post('/', async (req, res, next) => {
 	let profileName = req.body.edit
 	// let profileId = req.body.profileId
-	let profile = await TestProfile.findOne({ _id: `${profileName}` })
+	let profile = await Profile.findOne({ _id: `${profileName}` })
 	console.log(profile)
 	// res.redirect('/editProfile')
 	res.render('editProfile', {

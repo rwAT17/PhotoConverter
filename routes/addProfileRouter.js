@@ -10,7 +10,6 @@ const methodOverride = require('method-override')
 
 const router = express.Router()
 
-
 const addProfile = async (name, size, quality, waterMark, logo) => {
 	const profile = new TestProfile({
 		name: `${name}`,
@@ -27,7 +26,7 @@ const addProfile = async (name, size, quality, waterMark, logo) => {
 
 router.get('/', async (req, res, next) => {
 	const profilesFind = await TestProfile.find().lean()
-	let testFind = await TestProfile.find({ name: 'dupa' })
+	// let testFind = await TestProfile.find({ name: '' })
 
 	// console.log(profilesFind)
 	res.render('addProfile', {
@@ -42,7 +41,7 @@ router.post('/', async (req, res, next) => {
 	let quality = req.body.quality
 	let waterMark = req.body.waterMark
 	let logo = req.body.logo
-	console.log(name, size, quality, waterMark, logo)
+	// console.log(name, size, quality, waterMark, logo)
 
 	try {
 		await addProfile(name, size, quality, waterMark, logo)

@@ -1,33 +1,8 @@
-const fsp = require('fs/promises')
 const express = require('express')
-const TestProfile = require('../src/Profiles')
+const Profile = require('../src/Profiles')
 const utils = require('../src/utils')
-const { get } = require('express/lib/response')
 const router = express.Router()
 let config = undefined
-
-const reader = async dir => {
-	// reading a directory then returning an array of objects with names and last edit time
-	// of files of each file in declared directory
-	return fsp.readdir(`${config.ROOT_DIR}/${dir}`).then(files => {
-		let returnedArr = files.map(async file => {
-			// console.log(`file: ${config.ROOT_DIR}/${dir}/${file}`)
-			let stat = await fsp.stat(`${config.ROOT_DIR}/${dir}/${file}`)
-			return {
-				name: file,
-				time: stat.mtime.toDateString(),
-				size: stat.size,
-				isFile: stat.isFile(),
-				isDirectory: stat.isDirectory(),
-			}
-		})
-		return Promise.all(returnedArr)
-	})
-}
-
-const main = async dir => {
-	return reader(dir)
-}
 
 /////////////
 //rendering//
@@ -58,7 +33,7 @@ router.get('/', async (req, res, next) => {
 	// console.log(objArr);
 	try {
 		// console.log(profilesFind)
-		const profilesFind = await TestProfile.find().lean()
+		const profilesFind = await Profile.find().lean()
 		files = await utils.readDirStat(`${config.ROOT_DIR}/${queryParam}`) // reader function
 		res.render('reader', {
 			profiles: profilesFind,
@@ -77,17 +52,17 @@ router.post('/', async (req, res, next) => {
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
 	let profileName = req.body.profile
-	console.log(profileName)
-	let findProfile = await TestProfile.findOne({ name: `${profileName}` })
+	// console.log(profileName)
+	let findProfile = await Profile.findOne({ name: `${profileName}` })
 
 	let size = findProfile.parameters.size
 	let quality = findProfile.parameters.quality
 	let waterMark = findProfile.parameters.waterMark
 	let logo = findProfile.parameters.logo
 
-	console.log(size, quality, waterMark, logo)
+	// console.log(size, quality, waterMark, logo)
 	if (logo == 1) {
-		logo = 'dupa'
+		logo = 'Logo'
 	} else {
 		logo = 'undefined'
 	}
@@ -99,6 +74,13 @@ router.post('/', async (req, res, next) => {
 	}
 
 	try {
+		// console.log(files)
+		// console.log(typeof files)
+		// if (typeof files === 'string') {
+		// 	console.log('string')
+		// } else {
+		// 	console.log('arr')
+		// }
 		utils.resizer(files, dirName, config.ROOT_DIR, profileName, size, quality, waterMark, logo)
 
 		res.redirect('back')

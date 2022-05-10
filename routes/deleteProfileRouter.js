@@ -1,15 +1,10 @@
-const TestProfile = require('../src/Profiles')
-const fsp = require('fs/promises')
+const Profile = require('../src/Profiles')
 const express = require('express')
-const querystring = require('querystring')
-const bodyParser = require('body-parser')
-const path = require('path')
-const app = express()
-const port = 3000 // express port
+
 const router = express.Router()
 
 const deleteProfile = profileId => {
-	TestProfile.find({ name: profileId })
+	Profile.find({ name: profileId })
 		.deleteOne({ name: profileId })
 		.then(function () {
 			console.log('Data deleted') // Success

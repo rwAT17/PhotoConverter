@@ -1,11 +1,7 @@
 const express = require('express')
-const app = express()
-
 const router = express.Router()
-const readerRouter = require('./readerRouter')
 const utils = require('../src/utils')
 const gm = require('gm')
-const { path } = require('express/lib/application')
 
 const resizer = (arr, outputDir) => {
 	arr.forEach(file => {
