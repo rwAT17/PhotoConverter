@@ -32,13 +32,26 @@
 					<input class="" type="text" name="newQuality" value="{{oldParameters.parameters.quality}}">
 				</div>
 				<div class="add-profile__check">
-					<input class="" type="hidden" name="newWaterMark" value="0"><input type="checkbox"
-						onclick="this.previousSibling.value=1-this.previousSibling.value">
+					<input class="" type="hidden" name="newIsActive" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value" {{#if_eq oldParameters.isActive '1'}}
+							checked
+						{{/if_eq}}
+
+					<label for="">Active</label>
+				</div>
+				<div class="add-profile__check">
+					<input class="" type="hidden" name="newWaterMark" value="0"><input type="checkbox" 
+						onclick="this.previousSibling.value=1-this.previousSibling.value" {{#if_eq oldParameters.parameters.waterMark '1'}}
+							checked
+						{{/if_eq}}
+
 					<label for="">WaterMark</label>
 				</div>
 				<div class="add-profile__check">
 					<input class="" type="hidden" name="newLogo" value="0"><input type="checkbox"
-						onclick="this.previousSibling.value=1-this.previousSibling.value">
+						onclick="this.previousSibling.value=1-this.previousSibling.value" {{#if_eq oldParameters.parameters.logo '1'}}
+							checked
+						{{/if_eq}}
 					<label for="">Logo</label>
 				</div>
 

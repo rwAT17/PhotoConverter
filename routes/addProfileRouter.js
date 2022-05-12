@@ -1,4 +1,4 @@
-const TestProfile = require('../src/Profiles')
+const Profile = require('../src/Profiles')
 
 const fsp = require('fs/promises')
 const express = require('express')
@@ -10,9 +10,10 @@ const methodOverride = require('method-override')
 
 const router = express.Router()
 
-const addProfile = async (name, size, quality, waterMark, logo) => {
-	const profile = new TestProfile({
+const addProfile = async (name, isActive, size, quality, waterMark, logo) => {
+	const profile = new Profile({
 		name: `${name}`,
+		isActive: `${isActive}`,
 		parameters: {
 			size: `${size}`,
 			quality: `${quality}`,
@@ -25,7 +26,7 @@ const addProfile = async (name, size, quality, waterMark, logo) => {
 }
 
 router.get('/', async (req, res, next) => {
-	const profilesFind = await TestProfile.find().lean()
+	const profilesFind = await Profile.find().lean()
 	// let testFind = await TestProfile.find({ name: '' })
 
 	// console.log(profilesFind)
@@ -37,6 +38,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
 	let name = req.body.name
+	let isActive = req.body.isActive
 	let size = req.body.size
 	let quality = req.body.quality
 	let waterMark = req.body.waterMark
@@ -44,7 +46,7 @@ router.post('/', async (req, res, next) => {
 	// console.log(name, size, quality, waterMark, logo)
 
 	try {
-		await addProfile(name, size, quality, waterMark, logo)
+		await addProfile(name, isActive, size, quality, waterMark, logo)
 		console.log(`Added profile with name: ${name}`)
 		console.log(name, size, quality, waterMark, logo)
 		res.redirect('back')

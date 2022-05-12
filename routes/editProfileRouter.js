@@ -17,14 +17,18 @@ const router = express.Router()
 
 router.post('/', async (req, res, next) => {
 	let profileName = req.body.edit
+
 	// let profileId = req.body.profileId
 	let profile = await Profile.findOne({ _id: `${profileName}` })
 	console.log(profile)
+	console.log(profile.parameters.waterMark)
+
 	// res.redirect('/editProfile')
 	res.render('editProfile', {
 		oldParameters: {
 			profileId: profile.id,
 			name: profile.name,
+			isActive: profile.isActive,
 			parameters: {
 				size: profile.parameters.size,
 				quality: profile.parameters.quality,

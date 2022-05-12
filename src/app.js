@@ -49,10 +49,11 @@ const addProfilesRouter = require('../routes/addProfileRouter')
 const deleteProfilesRouter = require('../routes/deleteProfileRouter')
 const editProfilesRouter = require('../routes/editProfileRouter')
 const editHandler = require('../routes/services/editHandler')
+const allProfilesHandler = require('../routes/services/allProfilesHandler')(config)
 
 var hbs = expressHbs.create({})
 
-// if ==  hbs helper 
+// if ==  hbs helper
 
 hbs.handlebars.registerHelper('if_eq', function (a, b, opts) {
 	if (a == b) {
@@ -70,6 +71,7 @@ app.use('/addProfile', addProfilesRouter)
 app.use('/deleteProfile', deleteProfilesRouter)
 app.use('/editProfile', editProfilesRouter)
 app.use('/editHandler', editHandler)
+app.use('/allProfilesHandler', allProfilesHandler)
 
 // engine.registerHelper('if_eq', function (a, b, opts) {
 // 	if (a == b) {

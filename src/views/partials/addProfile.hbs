@@ -31,6 +31,11 @@
 					<input class="" type="text" name="quality" value="">
 				</div>
 				<div class="add-profile__check">
+					<input class="" type="hidden" name="isActive" value="0"><input type="checkbox"
+						onclick="this.previousSibling.value=1-this.previousSibling.value">
+					<label for="">Active</label>
+				</div>
+				<div class="add-profile__check">
 					<input class="" type="hidden" name="waterMark" value="0"><input type="checkbox"
 						onclick="this.previousSibling.value=1-this.previousSibling.value">
 					<label for="">WaterMark</label>

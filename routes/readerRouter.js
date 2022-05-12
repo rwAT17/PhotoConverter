@@ -3,6 +3,7 @@ const Profile = require('../src/Profiles')
 const utils = require('../src/utils')
 const router = express.Router()
 let config = undefined
+const fsp = require('fs/promises')
 
 /////////////
 //rendering//
@@ -52,35 +53,29 @@ router.post('/', async (req, res, next) => {
 	let files = req.body.filesArr
 	let dirName = req.body.dirName
 	let profileName = req.body.profile
-	// console.log(profileName)
+
 	let findProfile = await Profile.findOne({ name: `${profileName}` })
 
 	let size = findProfile.parameters.size
 	let quality = findProfile.parameters.quality
 	let waterMark = findProfile.parameters.waterMark
 	let logo = findProfile.parameters.logo
-
+	console.log(logo, waterMark)
 	// console.log(size, quality, waterMark, logo)
-	if (logo == 1) {
-		logo = 'Logo'
-	} else {
-		logo = 'undefined'
-	}
-
-	if (waterMark == 1) {
-		waterMark = 'waterMark'
-	} else {
-		waterMark = 'undefined'
-	}
 
 	try {
-		// console.log(files)
-		// console.log(typeof files)
-		// if (typeof files === 'string') {
-		// 	console.log('string')
-		// } else {
-		// 	console.log('arr')
-		// }
+		if (logo == 1) {
+			logo = 'Logo'
+		} else {
+			logo = 'undefined'
+		}
+
+		if (waterMark == 1) {
+			waterMark = 'waterMark'
+		} else {
+			waterMark = 'undefined'
+		}
+
 		utils.resizer(files, dirName, config.ROOT_DIR, profileName, size, quality, waterMark, logo)
 
 		res.redirect('back')

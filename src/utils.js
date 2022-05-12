@@ -29,9 +29,13 @@ const readDirStat = async dir => {
 }
 
 const resizing = i => {
-	for (let i = 0; i < 100; i++) {
-		console.log(`progress :${i}`)
-	}
+	//for (let i = 0; i < 100; i++) {
+	console.log(`progress :${i}`)
+	//}
+}
+
+const ifExists = filePath => {
+	fsp.access()
 }
 
 const resizer = async (input, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
@@ -42,42 +46,68 @@ const resizer = async (input, dirName, rootDir, profileName, size, quality, wate
 			if (err) throw err
 		})
 
-		if (typeof input === 'string') {
-			gm(`${rootDir}${dirName}/${input}`)
-				// .resize(size, size)
-				.quality(quality)
-				.fill('#fd01fe')
-				.drawText(size * 0.8, size * 0.5, logo)
-				.fontSize(size * 0.1)
-				.fill('#fd01fe')
-				.drawText(size * 0.5, size * 0.8, logo)
-				.fontSize(size * 0.1)
-				.monitor(console.log(resizing(1)))
-				.write(`${rootDir}${dirName}${profileName}/` + input, function (err) {
-					if (err) console.log(err)
-				})
+		const exists = () => {
+			fsp.access()
+		}
 
-			console.log(`Resized ${file}`)
-		} else {
+		if (typeof input === 'object') {
 			input.forEach(file => {
 				// console.log(`${rootDir}${dirName}/${file}`)
 				gm(`${rootDir}${dirName}/${file}`)
-					// .resize(size, size)
+					.resize(size)
 					.quality(quality)
 					.fill('#fd01fe')
-					.drawText(size * 0.8, size * 0.5, logo)
-					.fontSize(size * 0.1)
-					.fill('#fd01fe')
-					.drawText(size * 0.5, size * 0.8, logo)
-					.fontSize(size * 0.1)
-					.monitor(console.log(resizing(1)))
+					.font('AvantGarde-Demi')
+					.drawText(size * 0.1, size * 0.1, logo)
+					.fontSize(size * 0.05)
+					.monitor(resizing)
+					// .composite('../public/waterMarks/watermark.png') // composes two images
+					.resize(size)
 					.write(`${rootDir}${dirName}${profileName}/` + file, function (err) {
 						if (err) console.log(err)
 					})
-
-				console.log(`Resized ${file}`)
 			})
+		} else {
+			gm(`${rootDir}${dirName}/${input}`)
+				.resize(size, size)
+				.quality(quality)
+				.fill('#fd01fe')
+				.drawText(size * 0.01, size * 0.01, logo)
+				.fontSize(size * 0.1)
+				// .monitor(console.log(resizing(1)))
+				.write(`${rootDir}${dirName}${profileName}/` + input, function (err) {
+					if (err) console.log(err)
+				})
 		}
+
+		console.log(`Finished resizing files from ${rootDir}${dirName}`)
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+///////////
+
+const resizeAll = async (input, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
+	// console.log(`${rootDir}${dirName}${profileName}`)
+
+	try {
+		activeProfiles.forEach(profile => {
+			files.forEach(file => {
+				// console.log(`${rootDir}${dirName}/${file}`)
+				gm(`${rootDir}${dirName}/${file}`)
+					.resize(profile.parameters.size)
+					.quality(profile.parameters.quality)
+					.fill('#fd01fe')
+					.font('AvantGarde-Demi')
+					.drawText(profile.parameters.size * 0.1, profile.parameters.size * 0.1, profile.parameters.logo)
+					.fontSize(profile.parameters.size * 0.05)
+					// .composite('../public/waterMarks/watermark.png') // composes two images
+					.write(`${rootDir}${dirName}${profile.name}/` + file, function (err) {
+						if (err) console.log(err)
+					})
+			})
+		})
 
 		console.log(`Finished resizing files from ${rootDir}${dirName}`)
 	} catch (err) {
