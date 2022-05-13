@@ -20,36 +20,38 @@ mongoose.connect('mongodb://localhost/newDB', () => {
 	console.log('connected')
 })
 
+
+console.log(__dirname);
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname + '/src/', 'views'))
 app.engine(
 	'hbs',
 	engine({
-		layoutsDir: __dirname + '/views/layouts',
+		layoutsDir: __dirname + '/src/views/layouts/',
 		extname: 'hbs',
 		defaultLayout: 'planB',
-		partialsDir: __dirname + '/views/partials/',
+		partialsDir: __dirname + '/src/views/partials/',
 	})
 )
-
+// import(`./public`)
 app.use(express.json()) // for json // added instead of body parser
 app.use(express.urlencoded({ extended: true })) // added instead of body parser
-app.use(express.static('public'))
-app.use('/assets', express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '/public')))
+app.use('/assets', express.static(path.join(__dirname, '/public')))
 app.use(methodOverride('_method')) // to use DELETE and PUT mothods
 
 const config = {
 	ROOT_DIR: ROOT_DIR,
 }
 
-const readerRouter = require('../routes/readerRouter')(config)
-const mainPageRouter = require('../routes/mainPageRouter')(config)
-const profilesRouter = require('../routes/profilesRouter')
-const addProfilesRouter = require('../routes/addProfileRouter')
-const deleteProfilesRouter = require('../routes/deleteProfileRouter')
-const editProfilesRouter = require('../routes/editProfileRouter')
-const editHandler = require('../routes/services/editHandler')
-const allProfilesHandler = require('../routes/services/allProfilesHandler')(config)
+const readerRouter = require('./routes/readerRouter')(config)
+const mainPageRouter = require('./routes/mainPageRouter')(config)
+const profilesRouter = require('./routes/profilesRouter')
+const addProfilesRouter = require('./routes/addProfileRouter')
+const deleteProfilesRouter = require('./routes/deleteProfileRouter')
+const editProfilesRouter = require('./routes/editProfileRouter')
+const editHandler = require('./routes/services/editHandler')
+const allProfilesHandler = require('./routes/services/allProfilesHandler')(config)
 
 var hbs = expressHbs.create({})
 
