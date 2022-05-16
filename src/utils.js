@@ -42,7 +42,7 @@ const resizer = async (input, dirName, rootDir, profileName, size, quality, wate
 	// console.log(`${rootDir}${dirName}${profileName}`)
 
 	try {
-		let newDir = await fsp.mkdir(`${rootDir}${dirName}${profileName}`, err => {
+		let newDir = await fsp.mkdir(`${rootDir}/${dirName}${profileName}`, err => {
 			if (err) throw err
 		})
 
@@ -53,7 +53,7 @@ const resizer = async (input, dirName, rootDir, profileName, size, quality, wate
 		if (typeof input === 'object') {
 			input.forEach(file => {
 				// console.log(`${rootDir}${dirName}/${file}`)
-				gm(`${rootDir}${dirName}/${file}`)
+				gm(`${rootDir}/${dirName}${file}`)
 					.resize(size)
 					.quality(quality)
 					.fill('#fd01fe')
@@ -63,19 +63,18 @@ const resizer = async (input, dirName, rootDir, profileName, size, quality, wate
 					.monitor(resizing)
 					// .composite('../public/waterMarks/watermark.png') // composes two images
 					.resize(size)
-					.write(`${rootDir}${dirName}${profileName}/` + file, function (err) {
+					.write(`${rootDir}/${dirName}${profileName}/` + file, function (err) {
 						if (err) console.log(err)
 					})
 			})
 		} else {
-			gm(`${rootDir}${dirName}/${input}`)
+			gm(`${rootDir}/${dirName}${input}`)
 				.resize(size, size)
 				.quality(quality)
 				.fill('#fd01fe')
 				.drawText(size * 0.01, size * 0.01, logo)
 				.fontSize(size * 0.1)
-				// .monitor(console.log(resizing(1)))
-				.write(`${rootDir}${dirName}${profileName}/` + input, function (err) {
+				.write(`${rootDir}/${dirName}${profileName}/` + input, function (err) {
 					if (err) console.log(err)
 				})
 		}
@@ -86,34 +85,6 @@ const resizer = async (input, dirName, rootDir, profileName, size, quality, wate
 	}
 }
 
-///////////
-
-const resizeAll = async (input, dirName, rootDir, profileName, size, quality, waterMark, logo) => {
-	// console.log(`${rootDir}${dirName}${profileName}`)
-
-	try {
-		activeProfiles.forEach(profile => {
-			files.forEach(file => {
-				// console.log(`${rootDir}${dirName}/${file}`)
-				gm(`${rootDir}${dirName}/${file}`)
-					.resize(profile.parameters.size)
-					.quality(profile.parameters.quality)
-					.fill('#fd01fe')
-					.font('AvantGarde-Demi')
-					.drawText(profile.parameters.size * 0.1, profile.parameters.size * 0.1, profile.parameters.logo)
-					.fontSize(profile.parameters.size * 0.05)
-					// .composite('../public/waterMarks/watermark.png') // composes two images
-					.write(`${rootDir}${dirName}${profile.name}/` + file, function (err) {
-						if (err) console.log(err)
-					})
-			})
-		})
-
-		console.log(`Finished resizing files from ${rootDir}${dirName}`)
-	} catch (err) {
-		console.log(err)
-	}
-}
 
 // const readOnlyFiles = async dir => {
 // 	const cb = file => {

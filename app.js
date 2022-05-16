@@ -16,12 +16,11 @@ const { engine } = require('express-handlebars')
 
 const ROOT_DIR = process.env.ROOT_DIR || process.env.HOME + '/'
 
-mongoose.connect('mongodb://localhost/newDB', () => {
+mongoose.connect('mongodb://mongo_db/newDB', () => {
 	console.log('connected')
 })
 
-
-console.log(__dirname);
+console.log(__dirname)
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname + '/src/', 'views'))
 app.engine(
@@ -42,6 +41,7 @@ app.use(methodOverride('_method')) // to use DELETE and PUT mothods
 
 const config = {
 	ROOT_DIR: ROOT_DIR,
+	
 }
 
 const readerRouter = require('./routes/readerRouter')(config)
