@@ -5,7 +5,7 @@
 bash export HOST_IMAGE_DATA=/path/to/my/photos
 
 2. Open Terminal in directory where dockerfile is located
- 2.1
+ 
  docker run node:16
  docker run mongodb
  docker compose up
