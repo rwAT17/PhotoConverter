@@ -7,7 +7,9 @@ bash export HOST_IMAGE_DATA=/path/to/my/photos
 2. Open Terminal in directory where dockerfile is located
  
  docker run node:16
+ 
  docker run mongodb
+ 
  docker compose up
 
 3. App is on port 4000
