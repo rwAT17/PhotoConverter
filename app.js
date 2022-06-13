@@ -20,8 +20,7 @@ mongoose.connect('mongodb://localhost/newDB', () => {
 	console.log('connected')
 })
 
-
-console.log(__dirname);
+// console.log(__dirname)
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname + '/src/', 'views'))
 app.engine(
