@@ -11,4 +11,9 @@ const profileSchema = new mongoose.Schema({
 	},
 })
 
+const test = new mongoose.Schema({
+	test: String,
+})
+
 module.exports = mongoose.model('testprofiles', profileSchema)
+module.exports = mongoose.model('test', test)
