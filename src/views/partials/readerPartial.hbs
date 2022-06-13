@@ -2,9 +2,9 @@
 			<div class="nav-bar">
 		  <div class="nav-wrapper">
              <a class="nav-bar__link material-bubble" href="/">Home</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/profiles">Profiles</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/addProfile">Add Profile</a>
-	         <a class="nav-bar__link material-bubble" href="http://localhost:3000/Docs">Docs</a>
+	         <a class="nav-bar__link material-bubble" href="/profiles">Profiles</a>
+	         <a class="nav-bar__link material-bubble" href="/addProfile">Add Profile</a>
+	         <a class="nav-bar__link material-bubble" href="/Docs">Docs</a>
           </div>
 		</div>
        </nav> 
@@ -13,7 +13,7 @@
 	<div class="current-location">
 	 <p> You are now in</p>
 	 <div class="current-location__path"> {{#each location}}
-	<a class="current-location__link" href="http://localhost:3000/reader?page={{this.url}}">{{this.name}}</a>
+	<a class="current-location__link" href="/reader?page={{this.url}}">{{this.name}}</a>
 	<p>/</p>
 	 {{/each}}</div>
 	

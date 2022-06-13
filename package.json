@@ -1,34 +1,34 @@
 {
-	"name": "handlebars",
-	"version": "1.0.0",
-	"main": "app.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node .",
-		"dev": "nodemon . & npm run scss",
-		"scss": "sass --watch src/scss/:public/styles/"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"express": "^4.17.3",
-		"express-handlebars": "^6.0.2",
-		"gm": "^1.23.1",
-		"method-override": "^3.0.0",
-		"sass": "^1.49.9"
-	},
-	"devDependencies": {
-		"mongoose": "^6.3.0",
-		"nodemon": "^2.0.15"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/rwAT17/PhotoConverter.git"
-	},
-	"bugs": {
-		"url": "https://github.com/rwAT17/PhotoConverter/issues"
-	},
-	"homepage": "https://github.com/rwAT17/PhotoConverter#readme",
-	"description": ""
+  "name": "handlebars",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "nodemon . & npm run scss",
+    "scss": "sass --watch src/scss/:public/styles/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.2",
+    "gm": "^1.23.1",
+    "method-override": "^3.0.0",
+    "sass": "^1.49.9"
+  },
+  "devDependencies": {
+    "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwAT17/PhotoConverter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rwAT17/PhotoConverter/issues"
+  },
+  "homepage": "https://github.com/rwAT17/PhotoConverter#readme",
+  "description": ""
 }

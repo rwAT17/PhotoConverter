@@ -34,6 +34,7 @@ router.get('/', async (req, res, next) => {
 	// console.log(objArr);
 	try {
 		// console.log(profilesFind)
+		console.log(config.ROOT_DIR);
 		const profilesFind = await Profile.find().lean()
 		files = await utils.readDirStat(`${config.ROOT_DIR}/${queryParam}`) // reader function
 		res.render('reader', {
